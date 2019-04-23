@@ -15,8 +15,4 @@ protocol AuthRequestFactory {
                password: String,
                completionHandler: @escaping (DataResponse<LoginResult>) -> Void)
     
-    func login(userName: String,
-               password: String,
-               completionHandler: @escaping (DataResponse<LoginResult>) -> Void)
-    
 }

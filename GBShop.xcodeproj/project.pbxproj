@@ -19,6 +19,9 @@
 		842ABF52226DD0CD0039AAB5 /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF51226DD0CD0039AAB5 /* Logout.swift */; };
 		842ABF56226DD1680039AAB5 /* LogoutRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF55226DD1680039AAB5 /* LogoutRequestFactory.swift */; };
 		842ABF58226DD2180039AAB5 /* LogoutResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF57226DD2180039AAB5 /* LogoutResult.swift */; };
+		842ABF5B226EC8B70039AAB5 /* ChangeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF5A226EC8B70039AAB5 /* ChangeProfile.swift */; };
+		842ABF5D226EC8CB0039AAB5 /* ChangeProfileRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF5C226EC8CB0039AAB5 /* ChangeProfileRequestFactory.swift */; };
+		842ABF5F226EC9FB0039AAB5 /* ChangeProfileResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF5E226EC9FB0039AAB5 /* ChangeProfileResult.swift */; };
 		8A3A06C7BE1A2FF202FAACE6 /* Pods_GBShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5684453B96B6E5A3DAC93C6F /* Pods_GBShopUITests.framework */; };
 		AA8B4AE52268C5AA00B9DE15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B4AE42268C5AA00B9DE15 /* AppDelegate.swift */; };
 		AA8B4AEC2268C5AC00B9DE15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA8B4AEB2268C5AC00B9DE15 /* Assets.xcassets */; };
@@ -65,6 +68,9 @@
 		842ABF51226DD0CD0039AAB5 /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
 		842ABF55226DD1680039AAB5 /* LogoutRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequestFactory.swift; sourceTree = "<group>"; };
 		842ABF57226DD2180039AAB5 /* LogoutResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogoutResult.swift; path = GBShop/App/BusinessLogic/BusinessLogic/Logout/LogoutResult.swift; sourceTree = SOURCE_ROOT; };
+		842ABF5A226EC8B70039AAB5 /* ChangeProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfile.swift; sourceTree = "<group>"; };
+		842ABF5C226EC8CB0039AAB5 /* ChangeProfileRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileRequestFactory.swift; sourceTree = "<group>"; };
+		842ABF5E226EC9FB0039AAB5 /* ChangeProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeProfileResult.swift; path = "GBShop/App/BusinessLogic/BusinessLogic/Change Profile/ChangeProfileResult.swift"; sourceTree = SOURCE_ROOT; };
 		AA8B4AE12268C5AA00B9DE15 /* GBShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8B4AE42268C5AA00B9DE15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA8B4AEB2268C5AC00B9DE15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,8 +127,9 @@
 		842ABF4A226DCAAA0039AAB5 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
-				842ABF54226DD1470039AAB5 /* Logout */,
+				842ABF59226EC88D0039AAB5 /* Change Profile */,
 				842ABF53226DD1360039AAB5 /* Auth */,
+				842ABF54226DD1470039AAB5 /* Logout */,
 				842ABF4F226DCBFF0039AAB5 /* RequestFactory.swift */,
 			);
 			path = BusinessLogic;
@@ -144,6 +151,15 @@
 				842ABF55226DD1680039AAB5 /* LogoutRequestFactory.swift */,
 			);
 			path = Logout;
+			sourceTree = "<group>";
+		};
+		842ABF59226EC88D0039AAB5 /* Change Profile */ = {
+			isa = PBXGroup;
+			children = (
+				842ABF5A226EC8B70039AAB5 /* ChangeProfile.swift */,
+				842ABF5C226EC8CB0039AAB5 /* ChangeProfileRequestFactory.swift */,
+			);
+			path = "Change Profile";
 			sourceTree = "<group>";
 		};
 		AA8B4AD82268C5AA00B9DE15 = {
@@ -222,6 +238,7 @@
 			children = (
 				842ABF48226DC6640039AAB5 /* LoginResult.swift */,
 				842ABF57226DD2180039AAB5 /* LogoutResult.swift */,
+				842ABF5E226EC9FB0039AAB5 /* ChangeProfileResult.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -518,10 +535,13 @@
 				842ABF50226DCBFF0039AAB5 /* RequestFactory.swift in Sources */,
 				842ABF49226DC6640039AAB5 /* LoginResult.swift in Sources */,
 				AA8B4AE52268C5AA00B9DE15 /* AppDelegate.swift in Sources */,
+				842ABF5F226EC9FB0039AAB5 /* ChangeProfileResult.swift in Sources */,
 				842ABF52226DD0CD0039AAB5 /* Logout.swift in Sources */,
 				842ABF47226DBC010039AAB5 /* RequestRouter.swift in Sources */,
 				842ABF4C226DCAD20039AAB5 /* AuthRequestFactory.swift in Sources */,
 				842ABF58226DD2180039AAB5 /* LogoutResult.swift in Sources */,
+				842ABF5B226EC8B70039AAB5 /* ChangeProfile.swift in Sources */,
+				842ABF5D226EC8CB0039AAB5 /* ChangeProfileRequestFactory.swift in Sources */,
 				842ABF43226DBA740039AAB5 /* ErrorParser.swift in Sources */,
 				842ABF56226DD1680039AAB5 /* LogoutRequestFactory.swift in Sources */,
 				842ABF41226DBA4E0039AAB5 /* AbstractErrorParser.swift in Sources */,

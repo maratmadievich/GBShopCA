@@ -18,13 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        tryAuth()
+        tryLogin()
+        
+        tryLogout()
+        
+        tryChangeUserData()
         
         return true
     }
     
     
-    private func tryAuth() {
+    private func tryLogin() {
         
         let auth = requestFactory.makeAuthRequestFatory()
         
@@ -45,6 +49,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
+    
+    private func tryLogout() {
+        
+        let logout = requestFactory.makeLogoutRequestFatory()
+        
+        logout.logout(idUser: 123) { response in
+            
+            switch response.result {
+                
+            case .success(let logout):
+                
+                print(logout)
+                
+            case .failure(let error):
+                
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+    }
+    
+    
+    private func tryChangeUserData() {
+        
+        let profile = requestFactory.makeChangeProfileRequestFatory()
+        
+        profile.changeProfile(idUser: 123, userName: "maratmadievich", password: "geekbrains", email: "my@gmail.com", gender: "m", creditCard: "1234-1234-1234-1234", bio: "Some text") { response in
+            
+            switch response.result {
+                
+            case .success(let profile):
+                
+                print(profile)
+                
+            case .failure(let error):
+                
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+    }
+    
 //    func applicationWillResignActive(_ application: UIApplication) {
 //        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 //        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

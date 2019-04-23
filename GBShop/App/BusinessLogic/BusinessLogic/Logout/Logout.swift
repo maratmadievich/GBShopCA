@@ -35,34 +35,31 @@ class Logout: AbstractRequestFactory {
 
 extension Logout: LogoutRequestFactory {
     
-    func logout(userName: String, password: String, completionHandler: @escaping (DataResponse<LoginResult>) -> Void) {
+    func logout(idUser: Int, completionHandler: @escaping (DataResponse<LogoutResult>) -> Void) {
         
-        let requestModel = Login(baseUrl: baseUrl, login: userName, password: password)
+        let requestModel = Logout(baseUrl: baseUrl, idUser: idUser)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
 }
 
-extension Auth {
+extension Logout {
     
-    struct Login: RequestRouter {
+    struct Logout: RequestRouter {
         
         let baseUrl: URL
         
         let method: HTTPMethod = .get
         
-        let path: String = "login.json"
+        let path: String = "logout.json"
         
-        let login: String
-        
-        let password: String
+        let idUser: Int
         
         var parameters: Parameters? {
             
             return [
-                "username": login,
-                "password": password
+                "id_user": idUser
             ]
             
         }
