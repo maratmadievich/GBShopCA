@@ -57,4 +57,20 @@ class RequestFactory {
         return ChangeProfile(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
     }
     
+    
+    func makeCatalogDataRequestFatory() -> CatalogDataRequestFactory {
+        
+        let errorParser = makeErrorParser()
+        
+        return CatalogData(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+    }
+    
+    
+    func makeProductRequestFatory() -> ProductRequestFactory {
+        
+        let errorParser = makeErrorParser()
+        
+        return ProductRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+    }
+    
 }
