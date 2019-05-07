@@ -39,8 +39,18 @@
 		AAE88AC622731223006AF755 /* LogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE88AC522731223006AF755 /* LogoutTests.swift */; };
 		AAE88AC922731249006AF755 /* CatalogDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE88AC822731249006AF755 /* CatalogDataTests.swift */; };
 		AAE88ACC22731272006AF755 /* ChangeProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE88ACB22731272006AF755 /* ChangeProfileTests.swift */; };
-		AAE88ACE22731358006AF755 /* .empty in Resources */ = {isa = PBXBuildFile; fileRef = AAE88ACD22731358006AF755 /* .empty */; };
 		AAE88AD02273136F006AF755 /* .empty in Resources */ = {isa = PBXBuildFile; fileRef = AAE88ACF2273136F006AF755 /* .empty */; };
+		AAFB9DA622815AE600DD5B22 /* ReviewsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DA522815AE600DD5B22 /* ReviewsRequest.swift */; };
+		AAFB9DA822815AFE00DD5B22 /* ReviewsRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DA722815AFE00DD5B22 /* ReviewsRequestFactory.swift */; };
+		AAFB9DAA22815B3F00DD5B22 /* ReviewsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DA922815B3F00DD5B22 /* ReviewsResult.swift */; };
+		AAFB9DAD22815BBE00DD5B22 /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DAC22815BBE00DD5B22 /* AddReviewRequest.swift */; };
+		AAFB9DAF22815BD200DD5B22 /* AddReviewRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DAE22815BD200DD5B22 /* AddReviewRequestFactory.swift */; };
+		AAFB9DB122815BE700DD5B22 /* AddReviewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DB022815BE700DD5B22 /* AddReviewResult.swift */; };
+		AAFB9DB322815BFE00DD5B22 /* RemoveReviewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DB222815BFE00DD5B22 /* RemoveReviewResult.swift */; };
+		AAFB9DB622815C2100DD5B22 /* RemoveReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DB522815C2100DD5B22 /* RemoveReviewRequest.swift */; };
+		AAFB9DB822815C3600DD5B22 /* RemoveReviewRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DB722815C3600DD5B22 /* RemoveReviewRequestFactory.swift */; };
+		AAFB9DBB22815C5D00DD5B22 /* ReviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB9DBA22815C5D00DD5B22 /* ReviewsTests.swift */; };
+		AAFB9DBD228160F500DD5B22 /* .empty1 in Resources */ = {isa = PBXBuildFile; fileRef = AAFB9DBC228160F500DD5B22 /* .empty1 */; };
 		C8A928F99D0C1BD960FF08AF /* Pods_GBShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813A017F26E2F2CCF9481328 /* Pods_GBShop.framework */; };
 /* End PBXBuildFile section */
 
@@ -106,8 +116,18 @@
 		AAE88AC522731223006AF755 /* LogoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTests.swift; sourceTree = "<group>"; };
 		AAE88AC822731249006AF755 /* CatalogDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDataTests.swift; sourceTree = "<group>"; };
 		AAE88ACB22731272006AF755 /* ChangeProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileTests.swift; sourceTree = "<group>"; };
-		AAE88ACD22731358006AF755 /* .empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = .empty; sourceTree = "<group>"; };
 		AAE88ACF2273136F006AF755 /* .empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = .empty; sourceTree = "<group>"; };
+		AAFB9DA522815AE600DD5B22 /* ReviewsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRequest.swift; sourceTree = "<group>"; };
+		AAFB9DA722815AFE00DD5B22 /* ReviewsRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRequestFactory.swift; sourceTree = "<group>"; };
+		AAFB9DA922815B3F00DD5B22 /* ReviewsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsResult.swift; sourceTree = "<group>"; };
+		AAFB9DAC22815BBE00DD5B22 /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
+		AAFB9DAE22815BD200DD5B22 /* AddReviewRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequestFactory.swift; sourceTree = "<group>"; };
+		AAFB9DB022815BE700DD5B22 /* AddReviewResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewResult.swift; sourceTree = "<group>"; };
+		AAFB9DB222815BFE00DD5B22 /* RemoveReviewResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveReviewResult.swift; sourceTree = "<group>"; };
+		AAFB9DB522815C2100DD5B22 /* RemoveReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveReviewRequest.swift; sourceTree = "<group>"; };
+		AAFB9DB722815C3600DD5B22 /* RemoveReviewRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveReviewRequestFactory.swift; sourceTree = "<group>"; };
+		AAFB9DBA22815C5D00DD5B22 /* ReviewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTests.swift; sourceTree = "<group>"; };
+		AAFB9DBC228160F500DD5B22 /* .empty1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .empty1; sourceTree = "<group>"; };
 		BCCAA5F5FDE134834B4444FE /* Pods-GBShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBShop.release.xcconfig"; path = "Target Support Files/Pods-GBShop/Pods-GBShop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +173,9 @@
 		842ABF4A226DCAAA0039AAB5 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				AAFB9DB422815C0C00DD5B22 /* RemoveReview */,
+				AAFB9DAB22815BAE00DD5B22 /* AddReview */,
+				AAFB9DA422815ACF00DD5B22 /* GetReviews */,
 				842ABF53226DD1360039AAB5 /* Auth */,
 				AAE88AB72273116A006AF755 /* Catalog Data */,
 				842ABF59226EC88D0039AAB5 /* Change Profile */,
@@ -226,6 +249,7 @@
 		AA8B4AF82268C5AC00B9DE15 /* GBShopTests */ = {
 			isa = PBXGroup;
 			children = (
+				AAFB9DB922815C4700DD5B22 /* Reviews */,
 				AAE88AC72273123A006AF755 /* CatalogData */,
 				AAE88ACA22731263006AF755 /* ChangeProfile */,
 				AAE88AC1227311F1006AF755 /* Login */,
@@ -274,6 +298,9 @@
 				842ABF48226DC6640039AAB5 /* LoginResult.swift */,
 				842ABF57226DD2180039AAB5 /* LogoutResult.swift */,
 				AAE88AB1227310B6006AF755 /* ProductResult.swift */,
+				AAFB9DA922815B3F00DD5B22 /* ReviewsResult.swift */,
+				AAFB9DB022815BE700DD5B22 /* AddReviewResult.swift */,
+				AAFB9DB222815BFE00DD5B22 /* RemoveReviewResult.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -281,7 +308,7 @@
 		AA8B4B152268CD0600B9DE15 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				AAE88ACD22731358006AF755 /* .empty */,
+				AAFB9DBC228160F500DD5B22 /* .empty1 */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -375,6 +402,41 @@
 				AAE88ACB22731272006AF755 /* ChangeProfileTests.swift */,
 			);
 			path = ChangeProfile;
+			sourceTree = "<group>";
+		};
+		AAFB9DA422815ACF00DD5B22 /* GetReviews */ = {
+			isa = PBXGroup;
+			children = (
+				AAFB9DA522815AE600DD5B22 /* ReviewsRequest.swift */,
+				AAFB9DA722815AFE00DD5B22 /* ReviewsRequestFactory.swift */,
+			);
+			path = GetReviews;
+			sourceTree = "<group>";
+		};
+		AAFB9DAB22815BAE00DD5B22 /* AddReview */ = {
+			isa = PBXGroup;
+			children = (
+				AAFB9DAC22815BBE00DD5B22 /* AddReviewRequest.swift */,
+				AAFB9DAE22815BD200DD5B22 /* AddReviewRequestFactory.swift */,
+			);
+			path = AddReview;
+			sourceTree = "<group>";
+		};
+		AAFB9DB422815C0C00DD5B22 /* RemoveReview */ = {
+			isa = PBXGroup;
+			children = (
+				AAFB9DB522815C2100DD5B22 /* RemoveReviewRequest.swift */,
+				AAFB9DB722815C3600DD5B22 /* RemoveReviewRequestFactory.swift */,
+			);
+			path = RemoveReview;
+			sourceTree = "<group>";
+		};
+		AAFB9DB922815C4700DD5B22 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				AAFB9DBA22815C5D00DD5B22 /* ReviewsTests.swift */,
+			);
+			path = Reviews;
 			sourceTree = "<group>";
 		};
 		C3E2216A2DA7143CC679A243 /* Frameworks */ = {
@@ -508,8 +570,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAE88ACE22731358006AF755 /* .empty in Resources */,
 				AA8B4AEF2268C5AC00B9DE15 /* LaunchScreen.storyboard in Resources */,
+				AAFB9DBD228160F500DD5B22 /* .empty1 in Resources */,
 				AA8B4AEC2268C5AC00B9DE15 /* Assets.xcassets in Resources */,
 				AAE88AD02273136F006AF755 /* .empty in Resources */,
 			);
@@ -629,15 +691,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFB9DB822815C3600DD5B22 /* RemoveReviewRequestFactory.swift in Sources */,
+				AAFB9DAD22815BBE00DD5B22 /* AddReviewRequest.swift in Sources */,
 				AAE88AB6227310DA006AF755 /* ProductRequestFactory.swift in Sources */,
 				842ABF50226DCBFF0039AAB5 /* RequestFactory.swift in Sources */,
+				AAFB9DAA22815B3F00DD5B22 /* ReviewsResult.swift in Sources */,
 				842ABF49226DC6640039AAB5 /* LoginResult.swift in Sources */,
 				AA8B4AE52268C5AA00B9DE15 /* AppDelegate.swift in Sources */,
 				842ABF5F226EC9FB0039AAB5 /* ChangeProfileResult.swift in Sources */,
+				AAFB9DB622815C2100DD5B22 /* RemoveReviewRequest.swift in Sources */,
 				842ABF52226DD0CD0039AAB5 /* Logout.swift in Sources */,
 				842ABF47226DBC010039AAB5 /* RequestRouter.swift in Sources */,
+				AAFB9DA622815AE600DD5B22 /* ReviewsRequest.swift in Sources */,
+				AAFB9DB322815BFE00DD5B22 /* RemoveReviewResult.swift in Sources */,
 				AAE88AB92273117D006AF755 /* CatalogData.swift in Sources */,
 				842ABF4C226DCAD20039AAB5 /* AuthRequestFactory.swift in Sources */,
+				AAFB9DB122815BE700DD5B22 /* AddReviewResult.swift in Sources */,
+				AAFB9DAF22815BD200DD5B22 /* AddReviewRequestFactory.swift in Sources */,
 				842ABF58226DD2180039AAB5 /* LogoutResult.swift in Sources */,
 				842ABF5B226EC8B70039AAB5 /* ChangeProfile.swift in Sources */,
 				842ABF5D226EC8CB0039AAB5 /* ChangeProfileRequestFactory.swift in Sources */,
@@ -647,6 +717,7 @@
 				AAE88ABD227311A4006AF755 /* CatalogDataResult.swift in Sources */,
 				AAE88AB2227310B6006AF755 /* ProductResult.swift in Sources */,
 				842ABF41226DBA4E0039AAB5 /* AbstractErrorParser.swift in Sources */,
+				AAFB9DA822815AFE00DD5B22 /* ReviewsRequestFactory.swift in Sources */,
 				842ABF45226DBA9F0039AAB5 /* DataRequest.swift in Sources */,
 				842ABF4E226DCB2A0039AAB5 /* Auth.swift in Sources */,
 				AAE88AB4227310CB006AF755 /* ProductRequest.swift in Sources */,
@@ -658,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE88AC322731206006AF755 /* LoginTests.swift in Sources */,
+				AAFB9DBB22815C5D00DD5B22 /* ReviewsTests.swift in Sources */,
 				AAE88ACC22731272006AF755 /* ChangeProfileTests.swift in Sources */,
 				AAE88AC622731223006AF755 /* LogoutTests.swift in Sources */,
 				AA8B4AFA2268C5AC00B9DE15 /* GBShopTests.swift in Sources */,
