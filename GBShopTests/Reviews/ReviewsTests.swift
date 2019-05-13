@@ -12,7 +12,7 @@ import Alamofire
 
 class ReviewsTests: XCTestCase {
     
-    let expectation = XCTestExpectation(description: "Тестирование методов заказазов")
+    let expectation = XCTestExpectation(description: "Тестирование методов заказов")
     
     var requestFactory: RequestFactory!
     

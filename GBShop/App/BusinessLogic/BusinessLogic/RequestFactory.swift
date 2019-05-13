@@ -96,4 +96,28 @@ class RequestFactory {
         return RemoveReviewRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
     }
     
+    
+    func makeAddToBasketRequestFatory() -> AddToBasketRequestFactory {
+        
+        let errorParser = makeErrorParser()
+        
+        return AddToBasketRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+    }
+    
+    
+    func makeDeleteFromBasketRequestFatory() -> DeleteFromBasketRequestFactory {
+        
+        let errorParser = makeErrorParser()
+        
+        return DeleteFromBasketRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+    }
+    
+    
+    func makeGetBasketRequestFatory() -> GetBasketRequestFactory {
+        
+        let errorParser = makeErrorParser()
+        
+        return GetBasketRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+    }
+    
 }
