@@ -43,15 +43,15 @@ class LoginTests: XCTestCase {
     
     func testLogin() {
         
-        let auth = requestFactory.makeAuthRequestFatory()
+        let loginRequest = requestFactory.makeLoginRequestFactory()
         
-        auth.login(userName: userName, password: password) { response in
+        loginRequest.login(userName: userName, password: password) { response in
             
             switch response.result {
                 
-            case .success(let login):
+            case .success(let loginResponse):
                 
-                self.checkLoginResult(login)
+                self.checkLoginResult(loginResponse)
                 
                 break
                 

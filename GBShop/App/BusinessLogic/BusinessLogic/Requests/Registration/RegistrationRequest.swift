@@ -1,15 +1,15 @@
 //
-//  ChangeProfile.swift
+//  RegistrationRequest.swift
 //  GBShop
 //
-//  Created by Admin on 4/23/19.
+//  Created by Admin on 5/17/19.
 //  Copyright © 2019 Марат Нургалиев. All rights reserved.
 //
 
 import Foundation
 import Alamofire
 
-class ChangeProfile: AbstractRequestFactory {
+class RegistrationRequest: AbstractRequestFactory {
     
     let errorParser: AbstractErrorParser
     
@@ -33,29 +33,26 @@ class ChangeProfile: AbstractRequestFactory {
     
 }
 
-extension ChangeProfile: ChangeProfileRequestFactory {
+extension RegistrationRequest: RegistrationRequestFactory {
     
-    
-    func changeProfile(idUser: Int, userName: String, password: String, email: String, gender: String, creditCard: String, bio: String, completionHandler: @escaping (DataResponse<ChangeProfileResult>) -> Void) {
+    func registrate(userName: String, password: String, email: String, gender: String, creditCard: String, bio: String, completionHandler: @escaping (DataResponse<RegistrationResult>) -> Void) {
         
-        let requestModel = ChangeProfile(baseUrl: baseUrl, idUser: idUser, userName: userName, password: password, email: email, gender: gender, creditCard: creditCard, bio: bio)
+        let requestModel = RegistrationRequest(baseUrl: baseUrl, userName: userName, password: password, email: email, gender: gender, creditCard: creditCard, bio: bio)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
 }
 
-extension ChangeProfile {
+extension RegistrationRequest {
     
-    struct ChangeProfile: RequestRouter {
+    struct RegistrationRequest: RequestRouter {
         
         let baseUrl: URL
         
         let method: HTTPMethod = .get
         
-        let path: String = "changeUserData.json"
-        
-        let idUser: Int
+        let path: String = "registration.json"
         
         let userName: String
         
@@ -72,7 +69,6 @@ extension ChangeProfile {
         var parameters: Parameters? {
             
             return [
-                "id_user" : idUser,
                 "username" : userName,
                 "password" : password,
                 "email" : email,
@@ -86,17 +82,3 @@ extension ChangeProfile {
     }
     
 }
-
-
-/*
- 
- "id_user" : 123
- "username" : "Somebody",
- "password" : "mypassword",
- "email" : "some@some.ru",
- "gender": "m",
- "credit_card" : "9872389-2424-234224-234",
- "bio" : "This is good! I think I will switch to another language"
- 
- 
- */

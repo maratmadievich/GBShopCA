@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,60 +16,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let requestFactory = RequestFactory()
 
+   
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        tryLogin()
+        configureKeyboard()
         
-        tryLogout()
-        
-        tryChangeUserData()
+        showLogin()
         
         return true
     }
     
     
-    private func tryLogin() {
+    private func configureKeyboard() {
         
-        let auth = requestFactory.makeAuthRequestFatory()
+        IQKeyboardManager.shared.enable = true
         
-        auth.login(userName: "Somebody", password: "mypassword") { response in
-            
-            switch response.result {
-                
-            case .success(let login):
-               
-                print(login)
-            
-            case .failure(let error):
-            
-                print(error.localizedDescription)
-            }
-            
-        }
+        IQKeyboardManager.shared.enableAutoToolbar = false
         
+        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
+        
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
     }
-
     
-    private func tryLogout() {
+    
+    private func showLogin() {
         
-        let logout = requestFactory.makeLogoutRequestFatory()
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
         
-        logout.logout(idUser: 123) { response in
-            
-            switch response.result {
-                
-            case .success(let logout):
-                
-                print(logout)
-                
-            case .failure(let error):
-                
-                print(error.localizedDescription)
-            }
-            
-        }
+        let rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginStart")
         
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        self.window?.rootViewController = rootViewController
+        
+        self.window?.makeKeyAndVisible()
     }
     
     

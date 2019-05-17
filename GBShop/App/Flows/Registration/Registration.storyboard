@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Registration View Controller-->
+        <scene sceneID="JuO-NE-n2u">
+            <objects>
+                <viewController storyboardIdentifier="Registration" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SIj-MI-TUE" customClass="RegistrationViewController" customModule="GBShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oJI-5W-x23">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIm-90-QOl">
+                                <rect key="frame" x="0.0" y="20" width="375" height="587"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BGN-7V-y9p">
+                                        <rect key="frame" x="32" y="20" width="311" height="280"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FT9-yK-dZ7">
+                                                <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NSk-MU-EKg">
+                                                <rect key="frame" x="0.0" y="50" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IK5-N3-E6F">
+                                                <rect key="frame" x="0.0" y="100" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KgK-vd-nqW">
+                                                <rect key="frame" x="0.0" y="150" width="311" height="31"/>
+                                                <segments>
+                                                    <segment title="Мужской"/>
+                                                    <segment title="Женский"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер карты" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xcM-jj-m8g">
+                                                <rect key="frame" x="0.0" y="200" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Описание" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TTT-tr-64H">
+                                                <rect key="frame" x="0.0" y="250" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="BGN-7V-y9p" secondAttribute="bottom" constant="20" id="Ehm-BM-4Hf"/>
+                                    <constraint firstItem="BGN-7V-y9p" firstAttribute="top" secondItem="hIm-90-QOl" secondAttribute="top" constant="20" id="H3M-b0-yCl"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNM-3Y-Zht">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <color key="backgroundColor" name="colorButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="kGa-8F-0mC"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Регистрация"/>
+                                <connections>
+                                    <action selector="buttonRegistrationTapped:" destination="SIj-MI-TUE" eventType="touchUpInside" id="YAD-NH-jCk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BGN-7V-y9p" firstAttribute="leading" secondItem="pll-Ke-CQE" secondAttribute="leading" constant="32" id="2jX-QN-CnK"/>
+                            <constraint firstItem="pll-Ke-CQE" firstAttribute="trailing" secondItem="hIm-90-QOl" secondAttribute="trailing" id="DFt-rQ-TS8"/>
+                            <constraint firstItem="pll-Ke-CQE" firstAttribute="bottom" secondItem="LNM-3Y-Zht" secondAttribute="bottom" id="PUf-fr-Z4m"/>
+                            <constraint firstItem="hIm-90-QOl" firstAttribute="top" secondItem="pll-Ke-CQE" secondAttribute="top" id="Y5i-he-qPw"/>
+                            <constraint firstItem="pll-Ke-CQE" firstAttribute="trailing" secondItem="LNM-3Y-Zht" secondAttribute="trailing" id="aMf-Cq-GGf"/>
+                            <constraint firstItem="pll-Ke-CQE" firstAttribute="trailing" secondItem="BGN-7V-y9p" secondAttribute="trailing" constant="32" id="b4W-wF-gAs"/>
+                            <constraint firstItem="LNM-3Y-Zht" firstAttribute="top" secondItem="hIm-90-QOl" secondAttribute="bottom" id="jCw-dj-QW8"/>
+                            <constraint firstItem="hIm-90-QOl" firstAttribute="leading" secondItem="pll-Ke-CQE" secondAttribute="leading" id="mc1-Ej-xT2"/>
+                            <constraint firstItem="LNM-3Y-Zht" firstAttribute="leading" secondItem="pll-Ke-CQE" secondAttribute="leading" id="nbz-cH-BN7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pll-Ke-CQE"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonRegistration" destination="LNM-3Y-Zht" id="mCL-Xd-z4i"/>
+                        <outlet property="segmentedControlGender" destination="KgK-vd-nqW" id="jae-WN-rva"/>
+                        <outlet property="textFieldBio" destination="TTT-tr-64H" id="3Sw-xz-BB5"/>
+                        <outlet property="textFieldCard" destination="xcM-jj-m8g" id="keD-nA-KZh"/>
+                        <outlet property="textFieldEmail" destination="IK5-N3-E6F" id="4bG-Pt-dlY"/>
+                        <outlet property="textFieldLogin" destination="FT9-yK-dZ7" id="zrC-bf-jNV"/>
+                        <outlet property="textFieldPassword" destination="NSk-MU-EKg" id="rhn-MY-lC9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BCW-kV-xTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="216.80000000000001" y="-72.413793103448285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="colorButton">
+            <color red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class Auth: AbstractRequestFactory {
+class LoginRequest: AbstractRequestFactory {
    
     let errorParser: AbstractErrorParser
     
@@ -33,20 +33,20 @@ class Auth: AbstractRequestFactory {
     
 }
 
-extension Auth: AuthRequestFactory {
+extension LoginRequest: LoginRequestFactory {
    
     func login(userName: String, password: String, completionHandler: @escaping (DataResponse<LoginResult>) -> Void) {
     
-        let requestModel = Login(baseUrl: baseUrl, login: userName, password: password)
+        let requestModel = LoginRequest(baseUrl: baseUrl, login: userName, password: password)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
 }
 
-extension Auth {
+extension LoginRequest {
     
-    struct Login: RequestRouter {
+    struct LoginRequest: RequestRouter {
         
         let baseUrl: URL
         
