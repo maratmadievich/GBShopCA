@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class ChangeProfile: AbstractRequestFactory {
+class ChangeProfileRequest: AbstractRequestFactory {
     
     let errorParser: AbstractErrorParser
     
@@ -17,7 +17,7 @@ class ChangeProfile: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://192.168.1.72:8181/")!
     
     
     init(errorParser: AbstractErrorParser,
@@ -33,27 +33,26 @@ class ChangeProfile: AbstractRequestFactory {
     
 }
 
-extension ChangeProfile: ChangeProfileRequestFactory {
-    
+extension ChangeProfileRequest: ChangeProfileRequestFactory {
     
     func changeProfile(idUser: Int, userName: String, password: String, email: String, gender: String, creditCard: String, bio: String, completionHandler: @escaping (DataResponse<ChangeProfileResult>) -> Void) {
         
-        let requestModel = ChangeProfile(baseUrl: baseUrl, idUser: idUser, userName: userName, password: password, email: email, gender: gender, creditCard: creditCard, bio: bio)
+        let requestModel = ChangeProfileRequest(baseUrl: baseUrl, idUser: idUser, userName: userName, password: password, email: email, gender: gender, creditCard: creditCard, bio: bio)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
 }
 
-extension ChangeProfile {
+extension ChangeProfileRequest {
     
-    struct ChangeProfile: RequestRouter {
+    struct ChangeProfileRequest: RequestRouter {
         
         let baseUrl: URL
         
-        let method: HTTPMethod = .get
+        let method: HTTPMethod = .post
         
-        let path: String = "changeUserData.json"
+        let path: String = "change_profile"
         
         let idUser: Int
         
@@ -73,7 +72,7 @@ extension ChangeProfile {
             
             return [
                 "id_user" : idUser,
-                "username" : userName,
+                "user_name" : userName,
                 "password" : password,
                 "email" : email,
                 "gender": gender,
@@ -87,16 +86,3 @@ extension ChangeProfile {
     
 }
 
-
-/*
- 
- "id_user" : 123
- "username" : "Somebody",
- "password" : "mypassword",
- "email" : "some@some.ru",
- "gender": "m",
- "credit_card" : "9872389-2424-234224-234",
- "bio" : "This is good! I think I will switch to another language"
- 
- 
- */

@@ -43,15 +43,15 @@ class LoginTests: XCTestCase {
     
     func testLogin() {
         
-        let auth = requestFactory.makeAuthRequestFatory()
+        let loginRequest = requestFactory.makeLoginRequestFactory()
         
-        auth.login(userName: userName, password: password) { response in
+        loginRequest.login(userName: userName, password: password) { response in
             
             switch response.result {
                 
-            case .success(let login):
+            case .success(let loginResponse):
                 
-                self.checkLoginResult(login)
+                self.checkLoginResult(loginResponse)
                 
                 break
                 
@@ -81,7 +81,7 @@ class LoginTests: XCTestCase {
             XCTFail("LoginTests: id пользователя некорректен")
         }
         
-        if login.user.login.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+        if login.user.name.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             
             XCTFail("LoginTests: Логин пользователя пуст")
         }

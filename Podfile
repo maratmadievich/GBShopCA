@@ -9,6 +9,8 @@ target 'GBShop' do
 
 	pod 'Alamofire'
 	pod 'Swinject'
+	pod 'SwiftLint'
+	pod 'IQKeyboardManagerSwift'
 
   target 'GBShopTests' do
     inherit! :search_paths

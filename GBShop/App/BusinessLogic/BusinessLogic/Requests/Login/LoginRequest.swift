@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class Auth: AbstractRequestFactory {
+class LoginRequest: AbstractRequestFactory {
    
     let errorParser: AbstractErrorParser
     
@@ -17,7 +17,7 @@ class Auth: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://192.168.1.72:8181/")!
     
     
     init(errorParser: AbstractErrorParser,
@@ -33,26 +33,26 @@ class Auth: AbstractRequestFactory {
     
 }
 
-extension Auth: AuthRequestFactory {
+extension LoginRequest: LoginRequestFactory {
    
     func login(userName: String, password: String, completionHandler: @escaping (DataResponse<LoginResult>) -> Void) {
     
-        let requestModel = Login(baseUrl: baseUrl, login: userName, password: password)
+        let requestModel = LoginRequest(baseUrl: baseUrl, login: userName, password: password)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
 }
 
-extension Auth {
+extension LoginRequest {
     
-    struct Login: RequestRouter {
+    struct LoginRequest: RequestRouter {
         
         let baseUrl: URL
         
-        let method: HTTPMethod = .get
+        let method: HTTPMethod = .post
         
-        let path: String = "login.json"
+        let path: String = "login"
         
         let login: String
         
@@ -61,7 +61,7 @@ extension Auth {
         var parameters: Parameters? {
         
             return [
-                "username": login,
+                "user_name": login,
                 "password": password
             ]
             

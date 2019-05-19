@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="zQ4-nt-k7L">
+            <objects>
+                <viewController storyboardIdentifier="Profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4cX-gU-OBR" customClass="ProfileViewController" customModule="GBShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uDS-8L-SKB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1OB-yE-ask">
+                                <rect key="frame" x="0.0" y="20" width="375" height="587"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ydV-a5-H9L">
+                                        <rect key="frame" x="32" y="20" width="311" height="280"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I10-u6-Tib">
+                                                <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cSi-ez-1U5">
+                                                <rect key="frame" x="0.0" y="50" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xwv-Be-SV3">
+                                                <rect key="frame" x="0.0" y="100" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SrH-fe-NJk">
+                                                <rect key="frame" x="0.0" y="150" width="311" height="31"/>
+                                                <segments>
+                                                    <segment title="Мужской"/>
+                                                    <segment title="Женский"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер карты" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HjF-nv-Wkd">
+                                                <rect key="frame" x="0.0" y="200" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Описание" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8TK-1J-x0o">
+                                                <rect key="frame" x="0.0" y="250" width="311" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ydV-a5-H9L" secondAttribute="bottom" constant="20" id="J87-cy-mFh"/>
+                                    <constraint firstItem="ydV-a5-H9L" firstAttribute="top" secondItem="1OB-yE-ask" secondAttribute="top" constant="20" id="uxv-4s-RjF"/>
+                                </constraints>
+                            </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8UV-F2-pFV">
+                                <rect key="frame" x="178" y="334" width="20" height="20"/>
+                                <color key="color" name="colorButton"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cG1-kR-QLo">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <color key="backgroundColor" name="colorButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="OYZ-LN-KFo"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Изменить"/>
+                                <connections>
+                                    <action selector="buttonChangeProfileTapped:" destination="IAt-nn-xcv" eventType="touchUpInside" id="C79-vZ-aa0"/>
+                                    <action selector="buttonChangeProfileTapped:" destination="4cX-gU-OBR" eventType="touchUpInside" id="vxo-e3-l4H"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9tT-Ho-nkz" firstAttribute="trailing" secondItem="cG1-kR-QLo" secondAttribute="trailing" id="1pF-av-lP4"/>
+                            <constraint firstItem="9tT-Ho-nkz" firstAttribute="bottom" secondItem="cG1-kR-QLo" secondAttribute="bottom" id="2vt-hP-wIZ"/>
+                            <constraint firstItem="9tT-Ho-nkz" firstAttribute="trailing" secondItem="ydV-a5-H9L" secondAttribute="trailing" constant="32" id="F5x-3K-sIK"/>
+                            <constraint firstItem="9tT-Ho-nkz" firstAttribute="trailing" secondItem="1OB-yE-ask" secondAttribute="trailing" id="GsY-Ky-DCg"/>
+                            <constraint firstItem="8UV-F2-pFV" firstAttribute="centerY" secondItem="9tT-Ho-nkz" secondAttribute="centerY" id="Vrw-ry-GWB"/>
+                            <constraint firstItem="1OB-yE-ask" firstAttribute="leading" secondItem="9tT-Ho-nkz" secondAttribute="leading" id="eJ8-EO-D6e"/>
+                            <constraint firstItem="8UV-F2-pFV" firstAttribute="centerX" secondItem="9tT-Ho-nkz" secondAttribute="centerX" id="hnp-FC-2gb"/>
+                            <constraint firstItem="cG1-kR-QLo" firstAttribute="top" secondItem="1OB-yE-ask" secondAttribute="bottom" id="kHL-oM-nwc"/>
+                            <constraint firstItem="ydV-a5-H9L" firstAttribute="leading" secondItem="9tT-Ho-nkz" secondAttribute="leading" constant="32" id="ml5-Yo-e1Z"/>
+                            <constraint firstItem="1OB-yE-ask" firstAttribute="top" secondItem="9tT-Ho-nkz" secondAttribute="top" id="sJG-2X-nFT"/>
+                            <constraint firstItem="cG1-kR-QLo" firstAttribute="leading" secondItem="9tT-Ho-nkz" secondAttribute="leading" id="zIu-Th-VEX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9tT-Ho-nkz"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="8UV-F2-pFV" id="XfJ-Dc-r8P"/>
+                        <outlet property="buttonChangeProfile" destination="cG1-kR-QLo" id="8i6-Bn-QeU"/>
+                        <outlet property="segmentedControlGender" destination="SrH-fe-NJk" id="Hsn-M1-c1c"/>
+                        <outlet property="textFieldBio" destination="8TK-1J-x0o" id="PaK-6z-b1f"/>
+                        <outlet property="textFieldCard" destination="HjF-nv-Wkd" id="31w-lc-ypD"/>
+                        <outlet property="textFieldEmail" destination="xwv-Be-SV3" id="3b2-47-o2o"/>
+                        <outlet property="textFieldPassword" destination="cSi-ez-1U5" id="T6h-qO-MTb"/>
+                        <outlet property="textFieldUserName" destination="I10-u6-Tib" id="oxC-mj-aHg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEk-C7-Zdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="IAt-nn-xcv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="216.80000000000001" y="-72.413793103448285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="colorButton">
+            <color red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

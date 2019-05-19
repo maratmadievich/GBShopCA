@@ -1,5 +1,5 @@
 //
-//  AuthRequestFactory.swift
+//  LoginRequestFactory.swift
 //  GBShop
 //
 //  Created by Admin on 4/22/19.
@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-protocol AuthRequestFactory {
+protocol LoginRequestFactory {
     
     func login(userName: String,
                password: String,

@@ -1,14 +1,16 @@
 //
-//  ChangeProfileResult.swift
+//  RegistrationResult.swift
 //  GBShop
 //
-//  Created by Admin on 4/23/19.
+//  Created by Admin on 5/17/19.
 //  Copyright © 2019 Марат Нургалиев. All rights reserved.
 //
 
 import Foundation
 
-struct ChangeProfileResult: Codable {
-    
+struct RegistrationResult: Codable {
+        
     let result: Int
+    
+    let user: User
 }
