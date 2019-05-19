@@ -17,7 +17,7 @@ class RegistrationRequest: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://192.168.1.72:8181/")!
     
     
     init(errorParser: AbstractErrorParser,
@@ -35,9 +35,9 @@ class RegistrationRequest: AbstractRequestFactory {
 
 extension RegistrationRequest: RegistrationRequestFactory {
     
-    func registrate(userName: String, password: String, email: String, gender: String, creditCard: String, bio: String, completionHandler: @escaping (DataResponse<RegistrationResult>) -> Void) {
+    func registrate(userName: String, password: String, email: String, gender: String, completionHandler: @escaping (DataResponse<RegistrationResult>) -> Void) {
         
-        let requestModel = RegistrationRequest(baseUrl: baseUrl, userName: userName, password: password, email: email, gender: gender, creditCard: creditCard, bio: bio)
+        let requestModel = RegistrationRequest(baseUrl: baseUrl, userName: userName, password: password, email: email, gender: gender)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
@@ -50,9 +50,9 @@ extension RegistrationRequest {
         
         let baseUrl: URL
         
-        let method: HTTPMethod = .get
+        let method: HTTPMethod = .post
         
-        let path: String = "registration.json"
+        let path: String = "registration"
         
         let userName: String
         
@@ -62,19 +62,13 @@ extension RegistrationRequest {
         
         let gender: String
         
-        let creditCard: String
-        
-        let bio: String
-        
         var parameters: Parameters? {
             
             return [
-                "username" : userName,
+                "user_name" : userName,
                 "password" : password,
                 "email" : email,
-                "gender": gender,
-                "credit_card" : creditCard,
-                "bio" : bio
+                "gender": gender
             ]
             
         }

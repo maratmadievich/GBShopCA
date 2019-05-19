@@ -12,5 +12,5 @@ protocol RegistrationPresenterProtocol {
     
     init (view: RegistrationView)
     
-    func registrate(userName: String, password: String, email: String, isGenderMan: Bool, card: String, bio: String)
+    func registrate(userName: String, password: String, email: String, isGenderMan: Bool)
 }

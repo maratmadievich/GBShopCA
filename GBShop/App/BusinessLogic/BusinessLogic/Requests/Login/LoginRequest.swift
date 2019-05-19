@@ -17,7 +17,7 @@ class LoginRequest: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://192.168.1.72:8181/")!
     
     
     init(errorParser: AbstractErrorParser,
@@ -50,9 +50,9 @@ extension LoginRequest {
         
         let baseUrl: URL
         
-        let method: HTTPMethod = .get
+        let method: HTTPMethod = .post
         
-        let path: String = "login.json"
+        let path: String = "login"
         
         let login: String
         
@@ -61,7 +61,7 @@ extension LoginRequest {
         var parameters: Parameters? {
         
             return [
-                "username": login,
+                "user_name": login,
                 "password": password
             ]
             

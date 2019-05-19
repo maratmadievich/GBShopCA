@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LoginView: NSObjectProtocol {
+    
+    var presenter: LoginPresenterProtocol! {get set}
     
     func startLoading()
     
     func finishLoading()
     
-    func showRegistrationView()
+    func showView(viewController: UIViewController)
     
     func showError(text: String)
 }

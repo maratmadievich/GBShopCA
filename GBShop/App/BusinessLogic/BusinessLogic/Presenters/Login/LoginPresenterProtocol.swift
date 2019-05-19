@@ -16,5 +16,4 @@ protocol LoginPresenterProtocol {
     
     func registrate()
     
-    
 }

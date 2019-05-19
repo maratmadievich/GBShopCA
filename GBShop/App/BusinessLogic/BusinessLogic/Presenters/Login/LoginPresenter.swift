@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LoginPresenter: LoginPresenterProtocol {
     
@@ -55,6 +56,7 @@ class LoginPresenter: LoginPresenterProtocol {
     
     func registrate() {
         
+        showRegistrationView()
     }
     
     
@@ -75,18 +77,19 @@ class LoginPresenter: LoginPresenterProtocol {
             DispatchQueue.main.async {
                 
                 self.view?.finishLoading()
-            }
-            
-            switch response.result {
                 
-            case .success(let loginResponce):
-                
-                print(loginResponce)
-                
-            case .failure(let error):
-                
-                DispatchQueue.main.async {
+                switch response.result {
                     
+                case .success(let loginResponce):
+                    
+                    print(loginResponce)
+                    
+                    UserSingleton.instance.setUser(user: loginResponce.user)
+                    
+                    self.showProfileView()
+                    
+                case .failure(let error): 
+                        
                     self.view?.showError(text: error.localizedDescription)
                 }
                 
@@ -94,6 +97,26 @@ class LoginPresenter: LoginPresenterProtocol {
             
         }
         
+    }
+    
+    
+    private func showProfileView() {
+        
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        
+        view?.showView(viewController: viewController)
+    }
+    
+    
+    private func showRegistrationView() {
+        
+        let storyboard = UIStoryboard(name: "Registration", bundle: nil)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "Registration") as! RegistrationViewController
+        
+        view?.showView(viewController: viewController)
     }
     
     

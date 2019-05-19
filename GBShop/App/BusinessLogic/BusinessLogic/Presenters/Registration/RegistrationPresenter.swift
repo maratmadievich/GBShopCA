@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class RegistrationPresenter: RegistrationPresenterProtocol {
     
@@ -26,7 +27,7 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
         model = RegistrationModel()
     }
     
-    func registrate(userName: String, password: String, email: String, isGenderMan: Bool, card: String, bio: String) {
+    func registrate(userName: String, password: String, email: String, isGenderMan: Bool) {
         
         if !isLoad {
             
@@ -37,10 +38,6 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
             model.email = email.trimmingCharacters(in: .whitespacesAndNewlines)
             
             model.gender = isGenderMan ? "m" : "w"
-            
-            model.card = card.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            model.bio = bio.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if !haveEmptyFields() {
                 
@@ -60,8 +57,7 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
         
         return !(model.userName.count > 0
             && model.password.count > 0
-            && model.email.count > 0
-            && model.card.count > 0)
+            && model.email.count > 0)
     }
     
     
@@ -74,30 +70,49 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
         
         let registrationRequest = requestFactory.makeRegistrationRequestFatory()
         
-        registrationRequest.registrate(userName: model.userName, password: model.password, email: model.email, gender: model.gender, creditCard: model.card, bio: model.bio) {
+        registrationRequest.registrate(userName: model.userName, password: model.password, email: model.email, gender: model.gender) {
             
             [unowned self] response in
             
-            self.isLoad = false
-            
             DispatchQueue.main.async {
                 
+                self.isLoad = false
+                
                 self.view?.finishLoading()
-            }
-            
-            switch response.result {
                 
-            case .success(let registrationResponse):
+                switch response.result {
+                    
+                case .success(let registrationResponse):
+                    
+                    print(registrationResponse)
+                    
+                    UserSingleton.instance.setUser(user: registrationResponse.user)
+                    
+                    self.showProfileView()
+                    
+                case .failure(let error):
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.view?.showError(text: error.localizedDescription)
+                    }
+                    
+                }
                 
-                print(registrationResponse)
-                
-            case .failure(let error):
-                
-                print(error.localizedDescription)
             }
             
         }
         
+    }
+        
+        
+    private func showProfileView() {
+        
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        
+        view?.showView(viewController: viewController)
     }
     
     

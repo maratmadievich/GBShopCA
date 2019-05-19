@@ -62,7 +62,7 @@ class RequestFactory {
         
         let errorParser = makeErrorParser()
         
-        return ChangeProfile(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+        return ChangeProfileRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
     }
     
     

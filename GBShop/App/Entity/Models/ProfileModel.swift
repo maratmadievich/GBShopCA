@@ -1,14 +1,14 @@
 //
-//  RegistrationModel.swift
+//  ProfileModel.swift
 //  GBShop
 //
-//  Created by Admin on 5/17/19.
+//  Created by Марат Нургалиев on 19/05/2019.
 //  Copyright © 2019 Марат Нургалиев. All rights reserved.
 //
 
 import Foundation
 
-struct RegistrationModel {
+struct ProfileModel {
     
     var userName: String
     
@@ -17,6 +17,10 @@ struct RegistrationModel {
     var email: String
     
     var gender: String
+    
+    var card: String
+    
+    var bio: String
     
     
     init() {
@@ -28,6 +32,10 @@ struct RegistrationModel {
         email = ""
         
         gender = ""
+        
+        card = ""
+        
+        bio = ""
     }
     
 }

@@ -7,12 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 protocol RegistrationView: NSObjectProtocol {
+    
+    var presenter: RegistrationPresenterProtocol! {get set}
     
     func startLoading()
     
     func finishLoading()
+    
+    func showView(viewController: UIViewController)
     
     func showError(text: String)
 }

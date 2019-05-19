@@ -14,8 +14,6 @@ protocol RegistrationRequestFactory {
                     password: String,
                     email: String,
                     gender: String,
-                    creditCard: String,
-                    bio: String,
                     completionHandler: @escaping (DataResponse<RegistrationResult>) -> Void)
     
 }

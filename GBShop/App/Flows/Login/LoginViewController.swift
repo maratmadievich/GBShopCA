@@ -20,8 +20,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
     var presenter: LoginPresenterProtocol!
+    
     
 
     override func viewDidLoad() {
@@ -62,7 +62,6 @@ extension LoginViewController: LoginView {
         activityIndicator.isHidden = false
     }
     
-    
     func finishLoading() {
         
         activityIndicator.isHidden = true
@@ -70,10 +69,10 @@ extension LoginViewController: LoginView {
         activityIndicator.stopAnimating()
     }
     
-    
-    func showRegistrationView() {
+    func showView(viewController: UIViewController) {
         
-        performSegue(withIdentifier: "showRegistration", sender: nil)
+        navigationController?.pushViewController(viewController,
+                                                 animated: true)
     }
     
     

@@ -81,7 +81,7 @@ class LoginTests: XCTestCase {
             XCTFail("LoginTests: id пользователя некорректен")
         }
         
-        if login.user.login.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+        if login.user.name.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             
             XCTFail("LoginTests: Логин пользователя пуст")
         }

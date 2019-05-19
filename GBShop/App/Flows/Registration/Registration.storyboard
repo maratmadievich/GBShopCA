@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="587"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BGN-7V-y9p">
-                                        <rect key="frame" x="32" y="20" width="311" height="280"/>
+                                        <rect key="frame" x="32" y="20" width="311" height="180"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FT9-yK-dZ7">
                                                 <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
@@ -50,18 +50,6 @@
                                                     <segment title="Женский"/>
                                                 </segments>
                                             </segmentedControl>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер карты" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xcM-jj-m8g">
-                                                <rect key="frame" x="0.0" y="200" width="311" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Описание" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TTT-tr-64H">
-                                                <rect key="frame" x="0.0" y="250" width="311" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -70,6 +58,10 @@
                                     <constraint firstItem="BGN-7V-y9p" firstAttribute="top" secondItem="hIm-90-QOl" secondAttribute="top" constant="20" id="H3M-b0-yCl"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZXH-tf-jlU">
+                                <rect key="frame" x="178" y="334" width="20" height="20"/>
+                                <color key="color" name="colorButton"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNM-3Y-Zht">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <color key="backgroundColor" name="colorButton"/>
@@ -86,8 +78,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BGN-7V-y9p" firstAttribute="leading" secondItem="pll-Ke-CQE" secondAttribute="leading" constant="32" id="2jX-QN-CnK"/>
+                            <constraint firstItem="ZXH-tf-jlU" firstAttribute="centerX" secondItem="pll-Ke-CQE" secondAttribute="centerX" id="8Qw-sI-6jp"/>
                             <constraint firstItem="pll-Ke-CQE" firstAttribute="trailing" secondItem="hIm-90-QOl" secondAttribute="trailing" id="DFt-rQ-TS8"/>
                             <constraint firstItem="pll-Ke-CQE" firstAttribute="bottom" secondItem="LNM-3Y-Zht" secondAttribute="bottom" id="PUf-fr-Z4m"/>
+                            <constraint firstItem="ZXH-tf-jlU" firstAttribute="centerY" secondItem="pll-Ke-CQE" secondAttribute="centerY" id="TkG-5w-o5E"/>
                             <constraint firstItem="hIm-90-QOl" firstAttribute="top" secondItem="pll-Ke-CQE" secondAttribute="top" id="Y5i-he-qPw"/>
                             <constraint firstItem="pll-Ke-CQE" firstAttribute="trailing" secondItem="LNM-3Y-Zht" secondAttribute="trailing" id="aMf-Cq-GGf"/>
                             <constraint firstItem="pll-Ke-CQE" firstAttribute="trailing" secondItem="BGN-7V-y9p" secondAttribute="trailing" constant="32" id="b4W-wF-gAs"/>
@@ -98,13 +92,12 @@
                         <viewLayoutGuide key="safeArea" id="pll-Ke-CQE"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="ZXH-tf-jlU" id="L2W-K2-w2N"/>
                         <outlet property="buttonRegistration" destination="LNM-3Y-Zht" id="mCL-Xd-z4i"/>
                         <outlet property="segmentedControlGender" destination="KgK-vd-nqW" id="jae-WN-rva"/>
-                        <outlet property="textFieldBio" destination="TTT-tr-64H" id="3Sw-xz-BB5"/>
-                        <outlet property="textFieldCard" destination="xcM-jj-m8g" id="keD-nA-KZh"/>
                         <outlet property="textFieldEmail" destination="IK5-N3-E6F" id="4bG-Pt-dlY"/>
-                        <outlet property="textFieldLogin" destination="FT9-yK-dZ7" id="zrC-bf-jNV"/>
                         <outlet property="textFieldPassword" destination="NSk-MU-EKg" id="rhn-MY-lC9"/>
+                        <outlet property="textFieldUserName" destination="FT9-yK-dZ7" id="j8P-yY-lTT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BCW-kV-xTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
