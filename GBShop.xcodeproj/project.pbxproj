@@ -47,6 +47,13 @@
 		843080CA2289303400E02F95 /* DeleteFromBasketResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843080C92289303400E02F95 /* DeleteFromBasketResult.swift */; };
 		843080CC2289303C00E02F95 /* GetBasketResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843080CB2289303C00E02F95 /* GetBasketResult.swift */; };
 		843080CE2289305200E02F95 /* BasketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843080CD2289305200E02F95 /* BasketTests.swift */; };
+		84ECB52A2292641B0017FFF2 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB5292292641B0017FFF2 /* ProfileModel.swift */; };
+		84ECB52E2292644A0017FFF2 /* ProfilePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB52C2292644A0017FFF2 /* ProfilePresenterProtocol.swift */; };
+		84ECB52F2292644A0017FFF2 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB52D2292644A0017FFF2 /* ProfilePresenter.swift */; };
+		84ECB534229264AA0017FFF2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB531229264AA0017FFF2 /* ProfileViewController.swift */; };
+		84ECB535229264AA0017FFF2 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84ECB532229264AA0017FFF2 /* Profile.storyboard */; };
+		84ECB536229264AA0017FFF2 /* ProfileViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB533229264AA0017FFF2 /* ProfileViewProtocol.swift */; };
+		84ECB538229264DD0017FFF2 /* UserSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB537229264DD0017FFF2 /* UserSingleton.swift */; };
 		8A3A06C7BE1A2FF202FAACE6 /* Pods_GBShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5684453B96B6E5A3DAC93C6F /* Pods_GBShopUITests.framework */; };
 		AA8B4AE52268C5AA00B9DE15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B4AE42268C5AA00B9DE15 /* AppDelegate.swift */; };
 		AA8B4AEC2268C5AC00B9DE15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA8B4AEB2268C5AC00B9DE15 /* Assets.xcassets */; };
@@ -144,6 +151,13 @@
 		843080C92289303400E02F95 /* DeleteFromBasketResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteFromBasketResult.swift; sourceTree = "<group>"; };
 		843080CB2289303C00E02F95 /* GetBasketResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBasketResult.swift; sourceTree = "<group>"; };
 		843080CD2289305200E02F95 /* BasketTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketTests.swift; sourceTree = "<group>"; };
+		84ECB5292292641B0017FFF2 /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		84ECB52C2292644A0017FFF2 /* ProfilePresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilePresenterProtocol.swift; path = GBShop/App/BusinessLogic/BusinessLogic/Presenters/Profile/ProfilePresenterProtocol.swift; sourceTree = SOURCE_ROOT; };
+		84ECB52D2292644A0017FFF2 /* ProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilePresenter.swift; path = GBShop/App/BusinessLogic/BusinessLogic/Presenters/Profile/ProfilePresenter.swift; sourceTree = SOURCE_ROOT; };
+		84ECB531229264AA0017FFF2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = GBShop/App/Flows/Profile/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		84ECB532229264AA0017FFF2 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = GBShop/App/Flows/Profile/Profile.storyboard; sourceTree = SOURCE_ROOT; };
+		84ECB533229264AA0017FFF2 /* ProfileViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewProtocol.swift; path = GBShop/App/Flows/Profile/ProfileViewProtocol.swift; sourceTree = SOURCE_ROOT; };
+		84ECB537229264DD0017FFF2 /* UserSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSingleton.swift; sourceTree = "<group>"; };
 		AA8B4AE12268C5AA00B9DE15 /* GBShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8B4AE42268C5AA00B9DE15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA8B4AEB2268C5AC00B9DE15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -327,6 +341,7 @@
 		842BF7D4228E84D900E9499D /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				84ECB52B229264340017FFF2 /* Profile */,
 				842BF7D5228E84E800E9499D /* Login */,
 				842BF7E0228EBBA600E9499D /* Registration */,
 			);
@@ -356,6 +371,7 @@
 			children = (
 				842BF7E6228ECB1000E9499D /* LoginModel.swift */,
 				842BF7E8228ECCDA00E9499D /* RegistrationModel.swift */,
+				84ECB5292292641B0017FFF2 /* ProfileModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -393,6 +409,35 @@
 				843080CD2289305200E02F95 /* BasketTests.swift */,
 			);
 			path = Basket;
+			sourceTree = "<group>";
+		};
+		84ECB528229263DD0017FFF2 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				84ECB537229264DD0017FFF2 /* UserSingleton.swift */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
+		84ECB52B229264340017FFF2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				84ECB52D2292644A0017FFF2 /* ProfilePresenter.swift */,
+				84ECB52C2292644A0017FFF2 /* ProfilePresenterProtocol.swift */,
+			);
+			name = Profile;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		84ECB5302292649E0017FFF2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				84ECB532229264AA0017FFF2 /* Profile.storyboard */,
+				84ECB531229264AA0017FFF2 /* ProfileViewController.swift */,
+				84ECB533229264AA0017FFF2 /* ProfileViewProtocol.swift */,
+			);
+			name = Profile;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		AA8B4AD82268C5AA00B9DE15 = {
@@ -476,6 +521,7 @@
 		AA8B4B142268CD0100B9DE15 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				84ECB528229263DD0017FFF2 /* Singletons */,
 				842BF7E5228ECAF200E9499D /* Models */,
 				842BF7D2228E832300E9499D /* Results */,
 			);
@@ -493,6 +539,7 @@
 		AA8B4B162268CD0F00B9DE15 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				84ECB5302292649E0017FFF2 /* Profile */,
 				842BF7CD228E802700E9499D /* Login */,
 				842BF7C1228E74A700E9499D /* Registration */,
 				AAE88ACF2273136F006AF755 /* .empty */,
@@ -754,6 +801,7 @@
 				842BF7CF228E803800E9499D /* Login.storyboard in Resources */,
 				AAFB9DBD228160F500DD5B22 /* .empty1 in Resources */,
 				AA8B4AEC2268C5AC00B9DE15 /* Assets.xcassets in Resources */,
+				84ECB535229264AA0017FFF2 /* Profile.storyboard in Resources */,
 				AAE88AD02273136F006AF755 /* .empty in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -878,21 +926,25 @@
 				AAFB9DB822815C3600DD5B22 /* RemoveReviewRequestFactory.swift in Sources */,
 				842BF7DA228E851900E9499D /* LoginPresenter.swift in Sources */,
 				AAFB9DAD22815BBE00DD5B22 /* AddReviewRequest.swift in Sources */,
+				84ECB52E2292644A0017FFF2 /* ProfilePresenterProtocol.swift in Sources */,
 				AAE88AB6227310DA006AF755 /* ProductRequestFactory.swift in Sources */,
 				842ABF50226DCBFF0039AAB5 /* RequestFactory.swift in Sources */,
 				AAFB9DAA22815B3F00DD5B22 /* ReviewsResult.swift in Sources */,
+				84ECB536229264AA0017FFF2 /* ProfileViewProtocol.swift in Sources */,
 				843080CA2289303400E02F95 /* DeleteFromBasketResult.swift in Sources */,
 				842ABF49226DC6640039AAB5 /* LoginResult.swift in Sources */,
 				843080C62289301500E02F95 /* DeleteFromBasketRequestFactory.swift in Sources */,
 				AA8B4AE52268C5AA00B9DE15 /* AppDelegate.swift in Sources */,
 				842ABF5F226EC9FB0039AAB5 /* ChangeProfileResult.swift in Sources */,
 				AAFB9DB622815C2100DD5B22 /* RemoveReviewRequest.swift in Sources */,
+				84ECB52A2292641B0017FFF2 /* ProfileModel.swift in Sources */,
 				842BF7CC228E7D4E00E9499D /* RegistrationResult.swift in Sources */,
 				842BF7C8228E7CC100E9499D /* RegistrationRequestFactory.swift in Sources */,
 				842BF7CA228E7CD300E9499D /* RegistrationRequest.swift in Sources */,
 				842ABF52226DD0CD0039AAB5 /* Logout.swift in Sources */,
 				843080BC22892FC100E02F95 /* GetBasketRequest.swift in Sources */,
 				843080C42289300E00E02F95 /* DeleteFromBasketRequest.swift in Sources */,
+				84ECB538229264DD0017FFF2 /* UserSingleton.swift in Sources */,
 				843080CC2289303C00E02F95 /* GetBasketResult.swift in Sources */,
 				842ABF47226DBC010039AAB5 /* RequestRouter.swift in Sources */,
 				842BF7E4228EBBD100E9499D /* RegistrationPresenter.swift in Sources */,
@@ -905,6 +957,7 @@
 				AAFB9DAF22815BD200DD5B22 /* AddReviewRequestFactory.swift in Sources */,
 				842ABF58226DD2180039AAB5 /* LogoutResult.swift in Sources */,
 				842ABF5B226EC8B70039AAB5 /* ChangeProfile.swift in Sources */,
+				84ECB52F2292644A0017FFF2 /* ProfilePresenter.swift in Sources */,
 				843080C222892FFA00E02F95 /* AddToBasketRequestFactory.swift in Sources */,
 				842ABF5D226EC8CB0039AAB5 /* ChangeProfileRequestFactory.swift in Sources */,
 				AAE88ABB22731192006AF755 /* CatalogDataRequestFactory.swift in Sources */,
@@ -917,6 +970,7 @@
 				AAE88AB2227310B6006AF755 /* ProductResult.swift in Sources */,
 				842ABF41226DBA4E0039AAB5 /* AbstractErrorParser.swift in Sources */,
 				842BF7E9228ECCDA00E9499D /* RegistrationModel.swift in Sources */,
+				84ECB534229264AA0017FFF2 /* ProfileViewController.swift in Sources */,
 				AAFB9DA822815AFE00DD5B22 /* ReviewsRequestFactory.swift in Sources */,
 				842ABF45226DBA9F0039AAB5 /* DataRequest.swift in Sources */,
 				842BF7C5228E7AB000E9499D /* RegistrationViewController.swift in Sources */,
