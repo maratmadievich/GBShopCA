@@ -69,20 +69,8 @@ extension LoginViewController: LoginView {
         activityIndicator.stopAnimating()
     }
     
-    func showView(viewController: UIViewController) {
-        
-        navigationController?.pushViewController(viewController,
-                                                 animated: true)
-    }
-    
-    
-    func showError(text: String) {
-        
-        let alert = UIAlertController(title: "Ошибка", message: text, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: nil))
-        
-        self.present(alert, animated: true)
-    }
-    
 }
+
+extension LoginViewController: ProtocolShowNetworkAlert {}
+
+extension LoginViewController: ProtocolShowView {}

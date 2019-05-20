@@ -86,7 +86,7 @@ class LoginPresenter: LoginPresenterProtocol {
                     
                     UserSingleton.instance.setUser(user: loginResponce.user)
                     
-                    self.showProfileView()
+                    self.showCatalogView()
                     
                 case .failure(let error): 
                         
@@ -100,11 +100,11 @@ class LoginPresenter: LoginPresenterProtocol {
     }
     
     
-    private func showProfileView() {
+    private func showCatalogView() {
         
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
         
-        let viewController = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "Catalog") as! CatalogViewController
         
         view?.showView(viewController: viewController)
     }

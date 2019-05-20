@@ -27,6 +27,7 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
         model = RegistrationModel()
     }
     
+    
     func registrate(userName: String, password: String, email: String, isGenderMan: Bool) {
         
         if !isLoad {
@@ -88,7 +89,7 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
                     
                     UserSingleton.instance.setUser(user: registrationResponse.user)
                     
-                    self.showProfileView()
+                    self.showCatalogView()
                     
                 case .failure(let error):
                     
@@ -106,11 +107,11 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
     }
         
         
-    private func showProfileView() {
+    private func showCatalogView() {
         
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
         
-        let viewController = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "Catalog") as! CatalogViewController
         
         view?.showView(viewController: viewController)
     }

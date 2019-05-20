@@ -12,12 +12,16 @@ struct CatalogDataResult: Codable {
     
     let pageNumber: Int
     
+    let maxRowsCount: Int
+    
     let products: [Product]
     
     
     enum CodingKeys: String, CodingKey {
         
         case pageNumber = "page_number"
+        
+        case maxRowsCount = "max_rows_count"
         
         case products = "products"
     }
