@@ -22,4 +22,6 @@ protocol CatalogPresenterProtocol {
     func configure(cell: CatalogCellView, forRow row: Int)
     
     func showProfile()
+    
+    func changeSearchText(_ text: String)
 }

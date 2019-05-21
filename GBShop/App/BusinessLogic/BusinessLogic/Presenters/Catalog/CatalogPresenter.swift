@@ -34,7 +34,11 @@ class CatalogPresenter: CatalogPresenterProtocol {
         
         model.maxRowsCount = 1000
         
+        model.isSearchable = false
+        
         model.products.removeAll()
+        
+        model.searchProducts.removeAll()
         
         view?.refreshCatalogView()
         
@@ -44,7 +48,7 @@ class CatalogPresenter: CatalogPresenterProtocol {
     
     func getCatalogRows() {
         
-        if !isLoad && model.maxRowsCount > model.products.count {
+        if !isLoad && !model.isSearchable && model.maxRowsCount > model.products.count {
             
             callGetCatalogRequest()
         }
@@ -97,15 +101,32 @@ class CatalogPresenter: CatalogPresenterProtocol {
     
     func getRowsCount() -> Int {
         
-        return model.products.count
+        return model.isSearchable ? model.searchProducts.count : model.products.count
     }
     
     
     func configure(cell: CatalogCellView, forRow row: Int) {
         
-        cell.setName(text: model.products[row].name)
+        let product = model.isSearchable ? model.searchProducts[row] : model.products[row]
         
-        cell.setPrice(text: String(model.products[row].price))
+        cell.setName(text: product.name)
+        
+        cell.setPrice(text: String(product.price))
+    }
+    
+    
+    func changeSearchText(_ text: String) {
+        
+        let trimmingSearchText = text.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        
+        model.isSearchable = trimmingSearchText.count > 0
+        
+        if model.isSearchable {
+            
+            model.searchProducts = model.products.filter{ $0.name.lowercased().contains(trimmingSearchText) }
+        }
+            
+        view?.refreshCatalogView()
     }
    
     

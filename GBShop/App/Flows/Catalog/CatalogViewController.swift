@@ -12,6 +12,9 @@ class CatalogViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     private let refreshControl = UIRefreshControl()
     
     var presenter: CatalogPresenterProtocol!
@@ -44,10 +47,15 @@ class CatalogViewController: UIViewController {
         refreshControl.addTarget(self,
                                  action: #selector(refreshCatalog(_:)),
                                  for: .valueChanged)
+        
+        
+        searchBar.delegate = self
     }
     
     
     @objc private func refreshCatalog(_ sender: Any) {
+        
+        searchBar.text = ""
         
         presenter.refreshCatalogRows()
     }
@@ -106,6 +114,14 @@ extension CatalogViewController: CatalogView {
         tableView.reloadData()
     }
 
+}
+
+extension CatalogViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        presenter.changeSearchText(searchText)
+    }
 }
 
 extension CatalogViewController: ProtocolShowNetworkAlert {}

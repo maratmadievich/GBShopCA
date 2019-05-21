@@ -16,7 +16,11 @@ struct CatalogModel {
     
     var maxRowsCount: Int
     
+    var isSearchable: Bool
+    
     var products: [Product]
+    
+    var searchProducts: [Product]
     
     
     init() {
@@ -27,7 +31,11 @@ struct CatalogModel {
         
         maxRowsCount = 1000
         
+        isSearchable = false
+        
         products = [Product]()
+        
+        searchProducts = [Product]()
     }
     
 }
