@@ -22,4 +22,10 @@ struct LoginModel {
         password = ""
     }
     
+    
+    func isLoginDataCorrect() -> Bool {
+        
+        return userName.count > 0 && password.count > 0
+    }
+    
 }

@@ -46,17 +46,15 @@ class CatalogPresenter: CatalogPresenterProtocol {
         
         if !isLoad && model.maxRowsCount > model.products.count {
             
-            tryGetCatalog()
+            callGetCatalogRequest()
         }
         
     }
     
     
-    private func tryGetCatalog() {
+    private func callGetCatalogRequest() {
         
-        isLoad = true
-        
-        view?.startLoading()
+        changeLoad(isLoad: true)
         
         let catalogRequest = requestFactory.makeCatalogDataRequestFatory()
         
@@ -64,34 +62,36 @@ class CatalogPresenter: CatalogPresenterProtocol {
             
             [unowned self] response in
             
-            DispatchQueue.main.async {
+            self.changeLoad(isLoad: false)
+            
+            switch response.result {
                 
-                self.isLoad = false
+            case .success(let catalogResponse):
                 
-                self.view?.finishLoading()
+                self.model.products.append(contentsOf: catalogResponse.products)
                 
-                switch response.result {
-                    
-                case .success(let catalogResponse):
-                    
-                    print(catalogResponse)
-                    
-                    self.model.products.append(contentsOf: catalogResponse.products)
-                    
-                    self.model.pageNumber += 1
-                    
-                    self.view?.refreshCatalogView()
-                    
-                case .failure(let error):
-                        
-                    self.view?.showError(text: error.localizedDescription)
-                    
-                }
+                self.model.pageNumber += 1
+                
+                self.model.maxRowsCount = catalogResponse.maxRowsCount
+                
+                DispatchQueue.main.async { self.view?.refreshCatalogView() }
+                
+            case .failure(let error):
+                
+                DispatchQueue.main.async { self.view?.showError(text: error.localizedDescription) }
                 
             }
             
         }
         
+    }
+    
+    
+    private func changeLoad(isLoad: Bool) {
+        
+        self.isLoad = isLoad
+        
+        isLoad ? view?.startLoading() : view?.finishLoading()
     }
     
     

@@ -17,7 +17,6 @@ class CatalogViewController: UIViewController {
     var presenter: CatalogPresenterProtocol!
     
     
-    
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -33,6 +32,10 @@ class CatalogViewController: UIViewController {
         presenter = CatalogPresenter(view: self)
         
         navigationItem.title = "Каталог"
+        
+        tableView.delegate = self
+        
+        tableView.dataSource = self
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
@@ -73,6 +76,16 @@ extension CatalogViewController: UITableViewDelegate, UITableViewDataSource {
         presenter.configure(cell: cell, forRow: indexPath.row)
         
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == presenter.getRowsCount() - 1 {
+        
+            presenter.getCatalogRows()
+        }
+        
     }
     
 }

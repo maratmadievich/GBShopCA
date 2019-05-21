@@ -444,8 +444,8 @@
 		84ECB52B229264340017FFF2 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				84ECB52D2292644A0017FFF2 /* ProfilePresenter.swift */,
 				84ECB52C2292644A0017FFF2 /* ProfilePresenterProtocol.swift */,
+				84ECB52D2292644A0017FFF2 /* ProfilePresenter.swift */,
 			);
 			name = Profile;
 			path = "New Group";
