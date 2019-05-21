@@ -38,4 +38,11 @@ struct ProfileModel {
         bio = ""
     }
     
+    func isProfileDataCorrect() -> Bool {
+        
+        return userName.count > 0
+            && password.count > 0
+            && email.count > 0
+    }
+    
 }

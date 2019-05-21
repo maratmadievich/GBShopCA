@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class LoginPresenter: LoginPresenterProtocol {
     
@@ -18,6 +19,10 @@ class LoginPresenter: LoginPresenterProtocol {
     private var isLoad: Bool = false
     
     private let requestFactory = RequestFactory()
+    
+    private let errorEmptyFields = "Не все поля заполнены"
+    
+    private let errorIncorrectFields = "Одно из полей заполнено неверно"
     
     
     required init(view: LoginView) {
@@ -32,21 +37,24 @@ class LoginPresenter: LoginPresenterProtocol {
         
         if !isLoad {
             
+            if userName.count == 0 || password.count == 0 {
+                
+                view?.showError(text: errorEmptyFields)
+                
+                return
+            }
+            
             model.userName = userName.trimmingCharacters(in: .whitespacesAndNewlines)
             
             model.password = password.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            if model.userName.count > 0 && model.password.count > 0 {
+            if model.isLoginDataCorrect() {
                 
-                tryLogin()
-            }
-            else if userName.count > 0 && password.count > 0 {
-                
-                view?.showError(text: "Не все поля заполнены")
+                callLoginRequest()
             }
             else {
                 
-                view?.showError(text: "Одно из полей заполнено неверно")
+                view?.showError(text: errorIncorrectFields)
             }
             
         }
@@ -60,11 +68,9 @@ class LoginPresenter: LoginPresenterProtocol {
     }
     
     
-    private func tryLogin() {
+    private func callLoginRequest() {
         
-        isLoad = true
-        
-        view?.startLoading()
+        changeLoad(isLoad: true)
         
         let loginRequest = requestFactory.makeLoginRequestFactory()
         
@@ -72,27 +78,19 @@ class LoginPresenter: LoginPresenterProtocol {
             
             [unowned self] response in
             
-            self.isLoad = false
+            self.changeLoad(isLoad: false)
             
-            DispatchQueue.main.async {
+            switch response.result {
                 
-                self.view?.finishLoading()
+            case .success(let loginResponce):
                 
-                switch response.result {
-                    
-                case .success(let loginResponce):
-                    
-                    print(loginResponce)
-                    
-                    UserSingleton.instance.setUser(user: loginResponce.user)
-                    
-                    self.showProfileView()
-                    
-                case .failure(let error): 
-                        
-                    self.view?.showError(text: error.localizedDescription)
-                }
+                UserSingleton.instance.setUser(user: loginResponce.user)
                 
+                DispatchQueue.main.async { self.showCatalogView() }
+                
+            case .failure(let error):
+                
+                DispatchQueue.main.async { self.view?.showError(text: error.localizedDescription) }
             }
             
         }
@@ -100,11 +98,19 @@ class LoginPresenter: LoginPresenterProtocol {
     }
     
     
-    private func showProfileView() {
+    private func changeLoad(isLoad: Bool) {
         
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        self.isLoad = isLoad
         
-        let viewController = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        isLoad ? view?.startLoading() : view?.finishLoading()
+    }
+    
+    
+    private func showCatalogView() {
+        
+        let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "Catalog") as! CatalogViewController
         
         view?.showView(viewController: viewController)
     }

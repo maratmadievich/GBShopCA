@@ -58,7 +58,6 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: ProfileView {
     
-    
     func setTextFieldUserName(text: String) {
         
         textFieldUserName.text = text
@@ -104,25 +103,8 @@ extension ProfileViewController: ProfileView {
         activityIndicator.stopAnimating()
     }
     
-    func showError(text: String) {
-        
-        let alert = UIAlertController(title: "Ошибка", message: text, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: nil))
-        
-        self.present(alert, animated: true)
-    }
-    
-    
-    func showSuccess(text: String) {
-        
-        let alert = UIAlertController(title: "Изменение профиля", message: text, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: nil))
-        
-        self.present(alert, animated: true)
-    }
-    
-    
-    
 }
+
+extension ProfileViewController: ProtocolShowNetworkAlert {}
+
+extension ProfileViewController: ProtocolShowView {}

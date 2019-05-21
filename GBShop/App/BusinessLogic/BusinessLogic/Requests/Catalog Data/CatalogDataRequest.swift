@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class CatalogData: AbstractRequestFactory {
+class CatalogDataRequest: AbstractRequestFactory {
     
     let errorParser: AbstractErrorParser
     
@@ -17,7 +17,7 @@ class CatalogData: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://10.12.2.82:8181/")!
     
     
     init(errorParser: AbstractErrorParser,
@@ -33,26 +33,26 @@ class CatalogData: AbstractRequestFactory {
     
 }
 
-extension CatalogData: CatalogDataRequestFactory {
+extension CatalogDataRequest: CatalogDataRequestFactory {
     
     func getCatalogData(pageNumber: Int, idCategory: Int, completionHandler: @escaping (DataResponse<CatalogDataResult>) -> Void) {
         
-        let requestModel = CatalogData(baseUrl: baseUrl, pageNumber: pageNumber, idCategory: idCategory)
+        let requestModel = CatalogDataRequest(baseUrl: baseUrl, pageNumber: pageNumber, idCategory: idCategory)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
 }
 
-extension CatalogData {
+extension CatalogDataRequest {
     
-    struct CatalogData: RequestRouter {
+    struct CatalogDataRequest: RequestRouter {
         
         let baseUrl: URL
         
         let method: HTTPMethod = .get
         
-        let path: String = "catalogData.json"
+        let path: String = "catalog"
         
         let pageNumber: Int
         

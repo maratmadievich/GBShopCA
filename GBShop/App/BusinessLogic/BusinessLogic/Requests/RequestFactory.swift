@@ -70,7 +70,7 @@ class RequestFactory {
         
         let errorParser = makeErrorParser()
         
-        return CatalogData(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+        return CatalogDataRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
     }
     
     

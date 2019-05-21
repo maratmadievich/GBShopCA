@@ -18,6 +18,10 @@ class ProfilePresenter: ProfilePresenterProtocol {
     
     private let requestFactory = RequestFactory()
     
+    private let messageChangeSuccess = "Изменение прошло успешно!"
+    
+    private let errorIncorrectFields = "Одно из полей заполнено неверно"
+    
     
     required init(view: ProfileView) {
         
@@ -61,13 +65,13 @@ class ProfilePresenter: ProfilePresenterProtocol {
 
             model.bio = bio.trimmingCharacters(in: .whitespacesAndNewlines)
 
-            if !haveEmptyFields() {
+            if model.isProfileDataCorrect() {
 
-                tryChangeProfile()
+                callChangeProfileRequest()
             }
             else {
 
-                view?.showError(text: "Одно из полей заполнено неверно")
+                view?.showError(text: errorIncorrectFields)
             }
             
         }
@@ -75,20 +79,9 @@ class ProfilePresenter: ProfilePresenterProtocol {
     }
     
     
-    private func haveEmptyFields() -> Bool {
-
-        return !(model.userName.count > 0
-            && model.password.count > 0
-            && model.email.count > 0)
-    }
-    
-    
-    
-    private func tryChangeProfile() {
+    private func callChangeProfileRequest() {
         
-        isLoad = true
-        
-        view?.startLoading()
+        changeLoad(isLoad: true)
         
         let changeProfileRequest = requestFactory.makeChangeProfileRequestFatory()
         
@@ -96,33 +89,31 @@ class ProfilePresenter: ProfilePresenterProtocol {
             
             [unowned self] response in
             
-            DispatchQueue.main.async {
+            self.changeLoad(isLoad: false)
+            
+            switch response.result {
                 
-                self.isLoad = false
+            case .success(let changeProfileResponse):
                 
-                self.view?.finishLoading()
+                UserSingleton.instance.setUser(user: changeProfileResponse.user)
                 
+                DispatchQueue.main.async { self.view?.showSuccess(text: self.messageChangeSuccess) }
                 
-                switch response.result {
-                    
-                case .success(let changeProfileResponse):
-                    
-                    print(changeProfileResponse)
-                    
-                    UserSingleton.instance.setUser(user: changeProfileResponse.user)
-                    
-                    self.view?.showSuccess(text: "Изменение прошло успешно!")
-                    
-                case .failure(let error):
-                        
-                    self.view?.showError(text: error.localizedDescription)
-                    
-                }
+            case .failure(let error):
                 
+                DispatchQueue.main.async {self.view?.showError(text: error.localizedDescription) }
             }
             
         }
         
+    }
+    
+    
+    private func changeLoad(isLoad: Bool) {
+        
+        self.isLoad = isLoad
+        
+        isLoad ? view?.startLoading() : view?.finishLoading()
     }
     
     

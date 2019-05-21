@@ -27,6 +27,7 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
         model = RegistrationModel()
     }
     
+    
     func registrate(userName: String, password: String, email: String, isGenderMan: Bool) {
         
         if !isLoad {
@@ -39,9 +40,9 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
             
             model.gender = isGenderMan ? "m" : "w"
             
-            if !haveEmptyFields() {
+            if model.isRegistrationDataCorrect() {
                 
-                tryRegistrate()
+                callRegistrationRequest()
             }
             else {
                 
@@ -53,20 +54,9 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
     }
     
     
-    private func haveEmptyFields() -> Bool {
+    private func callRegistrationRequest() {
         
-        return !(model.userName.count > 0
-            && model.password.count > 0
-            && model.email.count > 0)
-    }
-    
-    
-    
-    private func tryRegistrate() {
-        
-        isLoad = true
-        
-        view?.startLoading()
+        changeLoad(isLoad: true)
         
         let registrationRequest = requestFactory.makeRegistrationRequestFatory()
         
@@ -74,43 +64,40 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
             
             [unowned self] response in
             
-            DispatchQueue.main.async {
+            self.changeLoad(isLoad: false)
+            
+            switch response.result {
                 
-                self.isLoad = false
+            case .success(let registrationResponse):
                 
-                self.view?.finishLoading()
+                UserSingleton.instance.setUser(user: registrationResponse.user)
                 
-                switch response.result {
-                    
-                case .success(let registrationResponse):
-                    
-                    print(registrationResponse)
-                    
-                    UserSingleton.instance.setUser(user: registrationResponse.user)
-                    
-                    self.showProfileView()
-                    
-                case .failure(let error):
-                    
-                    DispatchQueue.main.async {
-                        
-                        self.view?.showError(text: error.localizedDescription)
-                    }
-                    
-                }
+                DispatchQueue.main.async { self.showCatalogView() }
+                
+            case .failure(let error):
+                
+                DispatchQueue.main.async { self.view?.showError(text: error.localizedDescription) }
                 
             }
             
         }
         
     }
+    
+    
+    private func changeLoad(isLoad: Bool) {
+        
+        self.isLoad = isLoad
+        
+        isLoad ? view?.startLoading() : view?.finishLoading()
+    }
         
         
-    private func showProfileView() {
+    private func showCatalogView() {
         
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
         
-        let viewController = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "Catalog") as! CatalogViewController
         
         view?.showView(viewController: viewController)
     }
