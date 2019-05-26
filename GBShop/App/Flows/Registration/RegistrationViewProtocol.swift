@@ -11,13 +11,10 @@ import UIKit
 
 protocol RegistrationView: NSObjectProtocol {
     
-    var presenter: RegistrationPresenterProtocol! {get set}
+    var presenter: RegistrationPresenter! {get set}
     
     func startLoading()
-    
     func finishLoading()
-    
     func showView(viewController: UIViewController)
-    
     func showError(text: String)
 }

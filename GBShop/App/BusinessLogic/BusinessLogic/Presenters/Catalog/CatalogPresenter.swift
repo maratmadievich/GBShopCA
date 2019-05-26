@@ -9,136 +9,108 @@
 import Foundation
 import UIKit
 
-class CatalogPresenter: CatalogPresenterProtocol {
+protocol CatalogPresenter {
     
-    weak fileprivate var view: CatalogView?
+    var rowsCount: Int { get }
+    var router: CatalogRouter { get }
     
-    private var model: CatalogModel!
+    init (view: CatalogView, model: CatalogModel, router: CatalogRouter)
+    func getCatalogRows()
+    func refreshCatalogRows()
+    func configure(cell: CatalogCellView, forRow row: Int)
+    func changeSearchText(_ text: String)
+    func showProfile()
+    func selectRow(row: Int)
+}
+
+class CatalogPresenterImplementation: CatalogPresenter {
+    
+    fileprivate weak var view: CatalogView?
+    private var model: CatalogModel
+    internal var router: CatalogRouter
+    
+    public var rowsCount: Int {
+        return model.getProductsCount()
+    }
     
     private var isLoad: Bool = false
-    
     private let requestFactory = RequestFactory()
     
     
-    required init(view: CatalogView) {
-        
+    required init(view: CatalogView, model: CatalogModel, router: CatalogRouter) {
         self.view = view
-        
-        model = CatalogModel()
+        self.model = model
+        self.router = router
     }
     
-    
-    func refreshCatalogRows() {
-        
+    //MARK: - Публичные функции
+    public func refreshCatalogRows() {
         model.pageNumber = 0
-        
         model.maxRowsCount = 1000
-        
         model.isSearchable = false
         
         model.products.removeAll()
-        
         model.searchProducts.removeAll()
-        
         view?.refreshCatalogView()
-        
         getCatalogRows()
     }
     
-    
-    func getCatalogRows() {
-        
+    public func getCatalogRows() {
         if !isLoad && !model.isSearchable && model.maxRowsCount > model.products.count {
-            
             callGetCatalogRequest()
         }
-        
     }
     
-    
-    private func callGetCatalogRequest() {
-        
-        changeLoad(isLoad: true)
-        
-        let catalogRequest = requestFactory.makeCatalogDataRequestFatory()
-        
-        catalogRequest.getCatalogData(pageNumber: model.pageNumber, idCategory: model.idCategory) {
-            
-            [unowned self] response in
-            
-            self.changeLoad(isLoad: false)
-            
-            switch response.result {
-                
-            case .success(let catalogResponse):
-                
-                self.model.products.append(contentsOf: catalogResponse.products)
-                
-                self.model.pageNumber += 1
-                
-                self.model.maxRowsCount = catalogResponse.maxRowsCount
-                
-                DispatchQueue.main.async { self.view?.refreshCatalogView() }
-                
-            case .failure(let error):
-                
-                DispatchQueue.main.async { self.view?.showError(text: error.localizedDescription) }
-                
-            }
-            
-        }
-        
-    }
-    
-    
-    private func changeLoad(isLoad: Bool) {
-        
-        self.isLoad = isLoad
-        
-        isLoad ? view?.startLoading() : view?.finishLoading()
-    }
-    
-    
-    func getRowsCount() -> Int {
-        
-        return model.isSearchable ? model.searchProducts.count : model.products.count
-    }
-    
-    
-    func configure(cell: CatalogCellView, forRow row: Int) {
-        
-        let product = model.isSearchable ? model.searchProducts[row] : model.products[row]
-        
+    public func configure(cell: CatalogCellView, forRow row: Int) {
+        let product = model.getProduct(by: row)
         cell.setName(text: product.name)
-        
         cell.setPrice(text: String(product.price))
     }
     
-    
-    func changeSearchText(_ text: String) {
-        
+    public func changeSearchText(_ text: String) {
         let trimmingSearchText = text.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        
         model.isSearchable = trimmingSearchText.count > 0
         
         if model.isSearchable {
-            
             model.searchProducts = model.products.filter{ $0.name.lowercased().contains(trimmingSearchText) }
         }
-            
         view?.refreshCatalogView()
     }
-   
     
-    func showProfile() {
-        
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        
-        let viewController = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
-        
-        view?.showView(viewController: viewController)
+    public func showProfile() {
+        router.showProfileScene()
     }
     
+    public func selectRow(row: Int) {
+        router.showProductInfoScene(product: model.getProduct(by: row))
+    }
+    
+    //MARK: - Закрытые функции
+    private func callGetCatalogRequest() {
+        changeLoad(isLoad: true)
+        
+        let catalogRequest = requestFactory.makeCatalogDataRequestFatory()
+        catalogRequest.getCatalogData(pageNumber: model.pageNumber, idCategory: model.idCategory) {
+            [unowned self] response in
+            
+            self.changeLoad(isLoad: false)
+            switch response.result {
+            case .success(let catalogResponse):
+                self.model.products.append(contentsOf: catalogResponse.products)
+                self.model.pageNumber += 1
+                self.model.maxRowsCount = catalogResponse.maxRowsCount
+                DispatchQueue.main.async { self.view?.refreshCatalogView() }
+                
+            case .failure(let error):
+                DispatchQueue.main.async { self.view?.showError(text: error.localizedDescription) }
+            }
+        }
+    }
+    
+    private func changeLoad(isLoad: Bool) {
+        self.isLoad = isLoad
+        isLoad ? view?.startLoading() : view?.finishLoading()
+    }
     
 }
 

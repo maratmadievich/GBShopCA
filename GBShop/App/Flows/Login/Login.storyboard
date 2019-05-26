@@ -60,7 +60,7 @@
                                 </subviews>
                             </stackView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tXe-ZZ-02i">
-                                <rect key="frame" x="178" y="356" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="355.5" width="20" height="20"/>
                                 <color key="color" name="colorButton"/>
                             </activityIndicatorView>
                         </subviews>
@@ -81,7 +81,8 @@
                         <outlet property="buttonRegistration" destination="Xql-Hb-bGt" id="AKS-oW-tMA"/>
                         <outlet property="textFieldLogin" destination="BMI-Rg-epk" id="4wR-go-ofJ"/>
                         <outlet property="textFieldPassword" destination="sat-in-WNB" id="fLp-zy-rAN"/>
-                        <segue destination="9sx-PB-6Ik" kind="show" identifier="showRegistration" id="oFa-Q3-g9j"/>
+                        <segue destination="9sx-PB-6Ik" kind="show" identifier="showRegistrateScene" id="oFa-Q3-g9j"/>
+                        <segue destination="cs3-Nq-vBV" kind="show" identifier="showCatalogScene" id="Ztd-eD-v4f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10K-F3-TW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,6 +96,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNj-LD-BWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1804" y="121"/>
+        </scene>
+        <!--Catalog-->
+        <scene sceneID="yHT-6g-gBI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Catalog" referencedIdentifier="Catalog" id="cs3-Nq-vBV" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3bY-5J-ac3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1782" y="187"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FgY-AY-rJx">

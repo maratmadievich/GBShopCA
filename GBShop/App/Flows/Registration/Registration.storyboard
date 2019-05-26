@@ -59,7 +59,7 @@
                                 </constraints>
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZXH-tf-jlU">
-                                <rect key="frame" x="178" y="334" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="333.5" width="20" height="20"/>
                                 <color key="color" name="colorButton"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNM-3Y-Zht">
@@ -98,11 +98,20 @@
                         <outlet property="textFieldEmail" destination="IK5-N3-E6F" id="4bG-Pt-dlY"/>
                         <outlet property="textFieldPassword" destination="NSk-MU-EKg" id="rhn-MY-lC9"/>
                         <outlet property="textFieldUserName" destination="FT9-yK-dZ7" id="j8P-yY-lTT"/>
+                        <segue destination="wcF-IB-nnv" kind="show" identifier="showCatalogScene" id="Nea-6p-m6Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BCW-kV-xTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="216.80000000000001" y="-72.413793103448285"/>
+        </scene>
+        <!--Catalog-->
+        <scene sceneID="wfs-KB-BGZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Catalog" referencedIdentifier="Catalog" id="wcF-IB-nnv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cdb-27-Ic1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="938" y="-73"/>
         </scene>
     </scenes>
     <resources>

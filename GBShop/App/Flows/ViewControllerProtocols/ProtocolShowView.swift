@@ -16,5 +16,4 @@ extension ProtocolShowView where Self: UIViewController {
         
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
 }
