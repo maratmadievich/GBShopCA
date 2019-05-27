@@ -51,7 +51,9 @@ class CatalogPresenterImplementation: CatalogPresenter {
         
         model.products.removeAll()
         model.searchProducts.removeAll()
-        view?.refreshCatalogView()
+        if let view = view {
+            view.refreshCatalogView()
+        }
         getCatalogRows()
     }
     
@@ -74,7 +76,9 @@ class CatalogPresenterImplementation: CatalogPresenter {
         if model.isSearchable {
             model.searchProducts = model.products.filter{ $0.name.lowercased().contains(trimmingSearchText) }
         }
-        view?.refreshCatalogView()
+        if let view = view {
+            view.refreshCatalogView()
+        }
     }
     
     public func showProfile() {
@@ -99,17 +103,27 @@ class CatalogPresenterImplementation: CatalogPresenter {
                 self.model.products.append(contentsOf: catalogResponse.products)
                 self.model.pageNumber += 1
                 self.model.maxRowsCount = catalogResponse.maxRowsCount
-                DispatchQueue.main.async { self.view?.refreshCatalogView() }
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.refreshCatalogView()
+                    }
+                }
                 
             case .failure(let error):
-                DispatchQueue.main.async { self.view?.showError(text: error.localizedDescription) }
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showError(text: error.localizedDescription)
+                    }
+                }
             }
         }
     }
     
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
-        isLoad ? view?.startLoading() : view?.finishLoading()
+        if let view = view {
+            isLoad ? view.startLoading() : view.finishLoading()
+        }
     }
     
 }

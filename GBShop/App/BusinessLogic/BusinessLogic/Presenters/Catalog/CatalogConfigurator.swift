@@ -15,7 +15,7 @@ protocol CatalogConfigurator {
 
 class CatalogConfiguratorImplementation: CatalogConfigurator {
     
-    func configure(catalogViewController: CatalogViewController) {
+    public func configure(catalogViewController: CatalogViewController) {
         
         let model = CatalogModel()
         let router = CatalogRouterImplementation(view: catalogViewController)

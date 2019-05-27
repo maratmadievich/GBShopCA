@@ -15,7 +15,7 @@ protocol ProfileConfigurator {
 
 class ProfileConfiguratorImplementation: ProfileConfigurator {
     
-    func configure(profileViewController: ProfileViewController) {
+    public func configure(profileViewController: ProfileViewController) {
         
         let model = ProfileModel()
         let router = ProfileRouterImplementation(view: profileViewController)

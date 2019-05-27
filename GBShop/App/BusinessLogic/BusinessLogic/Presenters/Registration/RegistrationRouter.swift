@@ -23,11 +23,11 @@ class RegistrationRouterImplementation: RegistrationRouter {
         self.view = view
     }
     
-    func showCatalogScene() {
+    public func showCatalogScene() {
         view?.performSegue(withIdentifier: "showCatalogScene", sender: nil)
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         view?.navigationItem.backBarButtonItem = backItem

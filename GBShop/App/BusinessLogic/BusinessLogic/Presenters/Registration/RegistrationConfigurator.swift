@@ -15,7 +15,7 @@ protocol RegistrationConfigurator {
 
 class RegistrationConfiguratorImplementation: RegistrationConfigurator {
     
-    func configure(registrationViewController: RegistrationViewController) {
+    public func configure(registrationViewController: RegistrationViewController) {
         
         let model = RegistrationModel()
         let router = RegistrationRouterImplementation(view: registrationViewController)

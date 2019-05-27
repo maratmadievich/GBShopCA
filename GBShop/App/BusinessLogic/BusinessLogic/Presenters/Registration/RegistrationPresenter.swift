@@ -43,8 +43,8 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
             
             if model.isRegistrationDataCorrect() {
                 callRegistrationRequest()
-            } else {
-                view?.showError(text: "Одно из полей заполнено неверно")
+            } else if let view = view {
+                view.showError(text: "Одно из полей заполнено неверно")
             }
         }
     }
@@ -64,14 +64,20 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
                 DispatchQueue.main.async { self.handleRegistrationSuccess() }
                 
             case .failure(let error):
-                DispatchQueue.main.async { self.view?.showError(text: error.localizedDescription) }
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showError(text: error.localizedDescription)
+                    }
+                }
             }
         }
     }
     
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
-        isLoad ? view?.startLoading() : view?.finishLoading()
+        if let view = view {
+            isLoad ? view.startLoading() : view.finishLoading()
+        }
     }
     
     private func handleRegistrationSuccess() {

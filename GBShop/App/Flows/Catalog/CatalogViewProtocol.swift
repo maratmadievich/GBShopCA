@@ -6,7 +6,6 @@
 //  Copyright © 2019 Марат Нургалиев. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 protocol CatalogView: NSObjectProtocol {

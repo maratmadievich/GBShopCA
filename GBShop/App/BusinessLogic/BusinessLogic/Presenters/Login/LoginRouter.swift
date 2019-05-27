@@ -24,15 +24,15 @@ class LoginRouterImplementation: LoginRouter {
         self.view = view
     }
     
-    func showRegistrateScene() {
+    public func showRegistrateScene() {
         view?.performSegue(withIdentifier: "showRegistrateScene", sender: nil)
     }
     
-    func showCatalogScene() {
+    public func showCatalogScene() {
         view?.performSegue(withIdentifier: "showCatalogScene", sender: nil)
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         view?.navigationItem.backBarButtonItem = backItem

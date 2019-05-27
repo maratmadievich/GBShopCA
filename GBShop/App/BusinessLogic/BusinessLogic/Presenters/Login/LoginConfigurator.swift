@@ -15,7 +15,7 @@ protocol LoginConfigurator {
 
 class LoginConfiguratorImplementation: LoginConfigurator {
     
-    func configure(loginViewController: LoginViewController) {
+    public func configure(loginViewController: LoginViewController) {
         
         let model = LoginModel()
         let router = LoginRouterImplementation(view: loginViewController)

@@ -10,15 +10,14 @@ import Foundation
 
 struct ReviewsResult: Codable {
     
-    let result: Int
-    
+    let pageNumber: Int
+    let maxRowsCount: Int
     let reviews: [Review]
-    
     
     enum CodingKeys: String, CodingKey {
         
-        case result = "result"
-        
+        case pageNumber = "page_number"
+        case maxRowsCount = "max_rows_count"
         case reviews = "reviews"
     }
     
@@ -27,18 +26,15 @@ struct ReviewsResult: Codable {
 struct Review: Codable {
     
     let idProduct: Int
-    
     let idUser: Int
-    
+    let userName: String
     let text: String
-    
     
     enum CodingKeys: String, CodingKey {
         
         case idProduct = "id_product"
-        
-        case idUser = "idUser"
-        
+        case idUser = "id_user"
+        case userName = "user_name"
         case text = "text"
     }
     

@@ -1,24 +1,24 @@
 //
-//  ProfileRouter.swift
+//  ProductInfoRouter.swift
 //  GBShop
 //
-//  Created by Марат Нургалиев on 26/05/2019.
+//  Created by Марат Нургалиев on 27/05/2019.
 //  Copyright © 2019 Марат Нургалиев. All rights reserved.
 //
 
 import UIKit
 
-protocol ProfileRouter: AbstractRouterFactory {
+protocol ProductInfoRouter: AbstractRouterFactory {
     
-    init(view: ProfileViewController)
+    init(view: ProductInfoViewController)
     func dismiss()
 }
 
-class ProfileRouterImplementation: ProfileRouter {
+class ProductInfoRouterImplementation: ProductInfoRouter {
     
-    fileprivate weak var view: ProfileViewController?
+    fileprivate weak var view: ProductInfoViewController?
     
-    required init(view: ProfileViewController) {
+    required init(view: ProductInfoViewController) {
         self.view = view
     }
     
@@ -32,4 +32,3 @@ class ProfileRouterImplementation: ProfileRouter {
         view?.navigationItem.backBarButtonItem = backItem
     }
 }
-

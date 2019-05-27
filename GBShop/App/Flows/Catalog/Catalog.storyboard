@@ -87,6 +87,7 @@
                         <outlet property="searchBar" destination="7ez-v5-PjF" id="qmL-Tc-JBd"/>
                         <outlet property="tableView" destination="aXk-Wr-mHy" id="mhd-66-6Af"/>
                         <segue destination="geq-Su-j3e" kind="show" identifier="showProfileScene" id="mEU-60-khe"/>
+                        <segue destination="qY6-bN-gOU" kind="show" identifier="showProductInfoScene" id="LTd-ny-aVC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfr-E3-HGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,6 +101,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S7R-jg-9O3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="838" y="173"/>
+        </scene>
+        <!--ProductInfo-->
+        <scene sceneID="ebS-jV-qZh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProductInfo" referencedIdentifier="ProductInfo" id="qY6-bN-gOU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B6a-ei-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="862" y="241"/>
         </scene>
     </scenes>
 </document>

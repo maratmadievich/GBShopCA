@@ -50,7 +50,9 @@ class ProfilePresenterImplementation: ProfilePresenter {
             if model.isProfileDataCorrect() {
                 callChangeProfileRequest()
             } else {
-                view?.showError(text: errorIncorrectFields)
+                if let view = view {
+                    view.showError(text: errorIncorrectFields)
+                }
             }
         }
     }
@@ -67,26 +69,39 @@ class ProfilePresenterImplementation: ProfilePresenter {
             switch response.result {
             case .success(let changeProfileResponse):
                 UserSingleton.instance.setUser(user: changeProfileResponse.user)
-                DispatchQueue.main.async { self.view?.showSuccess(text: self.messageChangeSuccess) }
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showSuccess(text: self.messageChangeSuccess)
+                    }
+                }
                 
             case .failure(let error):
-                DispatchQueue.main.async {self.view?.showError(text: error.localizedDescription) }
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showError(text: error.localizedDescription)
+                    }
+                }
             }
         }
     }
     
     private func showProfileData() {
-        view?.setTextFieldUserName(text: UserSingleton.instance.getUser().name)
-        view?.setTextFieldPassword(text: UserSingleton.instance.getUser().password)
-        view?.setTextFieldEmail(text: UserSingleton.instance.getUser().email)
-        view?.setTextFieldCard(text: UserSingleton.instance.getUser().card)
-        view?.setTextFieldBio(text: UserSingleton.instance.getUser().bio)
-        view?.setSengmentedControlGender(selectedItem: UserSingleton.instance.getUser().gender == "m" ? 0 : 1)
+        guard let view = view else {
+            return
+        }
+        view.setTextFieldUserName(text: UserSingleton.instance.getUser().name)
+        view.setTextFieldPassword(text: UserSingleton.instance.getUser().password)
+        view.setTextFieldEmail(text: UserSingleton.instance.getUser().email)
+        view.setTextFieldCard(text: UserSingleton.instance.getUser().card)
+        view.setTextFieldBio(text: UserSingleton.instance.getUser().bio)
+        view.setSengmentedControlGender(selectedItem: UserSingleton.instance.getUser().gender == "m" ? 0 : 1)
     }
     
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
-        isLoad ? view?.startLoading() : view?.finishLoading()
+        if let view = view {
+            isLoad ? view.startLoading() : view.finishLoading()
+        }
     }
     
 }

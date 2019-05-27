@@ -10,7 +10,7 @@ import Alamofire
 
 protocol ReviewsRequestFactory {
     
-    func getReviews(idProduct: Int,
+    func getReviews(idProduct: Int, pageNumber: Int,
                     completionHandler: @escaping (DataResponse<ReviewsResult>) -> Void)
     
 }

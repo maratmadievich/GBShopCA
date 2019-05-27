@@ -24,17 +24,21 @@ class CatalogRouterImplementation: CatalogRouter {
         self.view = view
     }
     
-    func showProfileScene() {
+    public func showProfileScene() {
         view?.performSegue(withIdentifier: "showProfileScene", sender: nil)
     }
     
-    func showProductInfoScene(product: Product) {
+    public func showProductInfoScene(product: Product) {
         self.product = product
         view?.performSegue(withIdentifier: "showProductInfoScene", sender: nil)
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let productInfoController = segue.destination as? ProductInfoViewController {
+            productInfoController.configurator = ProductInfoConfiguratorImplementation()
+            productInfoController.configurator
+                .configure(productInfoController: productInfoController, product: product)
+        }
         let backItem = UIBarButtonItem()
         backItem.title = ""
         view?.navigationItem.backBarButtonItem = backItem

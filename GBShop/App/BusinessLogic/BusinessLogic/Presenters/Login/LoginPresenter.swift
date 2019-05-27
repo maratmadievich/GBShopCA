@@ -41,8 +41,11 @@ class LoginPresenterImplementation: LoginPresenter {
     
     public func login(userName: String, password: String) {
         if !isLoad {
+            guard let view = view else {
+                return
+            }
             if userName.count == 0 || password.count == 0 {
-                view?.showError(text: errorEmptyFields)
+                view.showError(text: errorEmptyFields)
                 return
             }
             
@@ -51,7 +54,7 @@ class LoginPresenterImplementation: LoginPresenter {
             if model.isLoginDataCorrect() {
                 callLoginRequest()
             } else {
-                view?.showError(text: errorIncorrectFields)
+                view.showError(text: errorIncorrectFields)
             }
         }
     }
@@ -75,14 +78,20 @@ class LoginPresenterImplementation: LoginPresenter {
                 DispatchQueue.main.async { self.handleLoginSuccess() }
                 
             case .failure(let error):
-                DispatchQueue.main.async { self.view?.showError(text: error.localizedDescription) }
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showError(text: error.localizedDescription)
+                    }
+                }
             }
         }
     }
     
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
-        isLoad ? view?.startLoading() : view?.finishLoading()
+        if let view = view {
+            isLoad ? view.startLoading() : view.finishLoading()
+        }
     }
     
     private func handleLoginSuccess() {
