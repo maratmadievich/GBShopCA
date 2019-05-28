@@ -17,9 +17,11 @@ target 'GBShop' do
     # Pods for testing
   end
 
-  target 'GBShopUITests' do
+  
+
+end
+
+target 'GBShopUITests' do
     inherit! :search_paths
     # Pods for testing
   end
-
-end

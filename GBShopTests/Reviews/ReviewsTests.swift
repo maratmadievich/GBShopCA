@@ -17,11 +17,9 @@ class ReviewsTests: XCTestCase {
     var requestFactory: RequestFactory!
     
     var idUser: Int!
-    
     var idReview: Int!
-    
     var idProduct: Int!
-    
+    var pageNumber: Int!
     var reviewText: String!
     
     
@@ -30,34 +28,26 @@ class ReviewsTests: XCTestCase {
         requestFactory = RequestFactory()
         
         idUser = 1
-        
         idReview = 1
-        
         idProduct = 1
-        
+        pageNumber = 1
         reviewText = "Новый отзыв"
     }
     
-    
     override func tearDown() {
-        
         idUser = nil
-        
         idReview = nil
-        
         idProduct = nil
-        
         reviewText = nil
-        
+        pageNumber = nil
         requestFactory = nil
     }
-    
     
     func testGetReviews() {
         
         let reviewsRequest = requestFactory.makeGetReviewsRequestFatory()
         
-        reviewsRequest.getReviews(idProduct: idProduct) { response in
+        reviewsRequest.getReviews(idProduct: idProduct, pageNumber: pageNumber) { response in
             
             switch response.result {
                 
@@ -83,9 +73,11 @@ class ReviewsTests: XCTestCase {
     
     private func checkReviewsResult(_ reviewResult: ReviewsResult) {
         
-        if reviewResult.result != 1 {
-            
-            XCTFail("ReviewsTests: неверный ответ от сервера")
+        if reviewResult.maxRowsCount < 0 {
+            XCTFail("ReviewsTests: неверно указано мах. количество строк")
+        }
+        if reviewResult.pageNumber < 0 {
+            XCTFail("ReviewsTests: неверно указан номер страницы")
         }
         
     }
