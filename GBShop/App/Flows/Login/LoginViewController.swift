@@ -11,44 +11,33 @@ import UIKit
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var textFieldLogin: UITextField!
-    
     @IBOutlet weak var textFieldPassword: UITextField!
     
     @IBOutlet weak var buttonLogin: UIButton!
-    
     @IBOutlet weak var buttonRegistration: UIButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var presenter: LoginPresenterProtocol!
-    
+    public var configurator = LoginConfiguratorImplementation()
+    internal var presenter: LoginPresenter!
     
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        configureView()
-    }
-    
-    
-    private func configureView() {
-        
-        presenter = LoginPresenter(view: self)
-        
+        configurator.configure(loginViewController: self)
         activityIndicator.isHidden = true
     }
     
-
     @IBAction func buttonLoginTapped(_ sender: Any) {
-        
         presenter.login(userName: textFieldLogin.text!, password: textFieldPassword.text!)
     }
     
-    
     @IBAction func buttonRegistrationTapped(_ sender: Any) {
-    
         presenter.registrate()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        presenter.router.prepare(for: segue, sender: sender)
     }
     
 }
@@ -56,16 +45,12 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginView {
     
     func startLoading() {
-        
         activityIndicator.startAnimating()
-        
         activityIndicator.isHidden = false
     }
     
     func finishLoading() {
-        
         activityIndicator.isHidden = true
-        
         activityIndicator.stopAnimating()
     }
     

@@ -17,7 +17,7 @@ class LoginRequest: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "http://10.12.2.82:8181/")!
+    let baseUrl = URL(string: "http://192.168.1.72:8181/")!
     //10.12.2.82
     //192.168.1.72
     

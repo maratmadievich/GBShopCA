@@ -11,31 +11,27 @@ import Foundation
 struct CatalogModel {
     
     var pageNumber: Int
-    
     var idCategory: Int
-    
     var maxRowsCount: Int
-    
     var isSearchable: Bool
     
     var products: [Product]
-    
     var searchProducts: [Product]
     
-    
     init() {
-        
         pageNumber = 0
-        
         idCategory = 1
-        
         maxRowsCount = 1000
-        
         isSearchable = false
-        
         products = [Product]()
-        
         searchProducts = [Product]()
     }
     
+    public func getProductsCount() -> Int {
+        return isSearchable ? searchProducts.count : products.count
+    }
+    
+    public func getProduct(by row: Int) -> Product {
+        return isSearchable ? searchProducts[row] : products[row]
+    }
 }

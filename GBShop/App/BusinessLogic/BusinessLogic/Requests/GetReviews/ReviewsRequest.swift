@@ -16,7 +16,7 @@ class ReviewsRequest: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://192.168.1.72:8181/")!
     
     
     init(errorParser: AbstractErrorParser,
@@ -34,9 +34,9 @@ class ReviewsRequest: AbstractRequestFactory {
 
 extension ReviewsRequest: ReviewsRequestFactory {
     
-    func getReviews(idProduct: Int, completionHandler: @escaping (DataResponse<ReviewsResult>) -> Void) {
+    func getReviews(idProduct: Int, pageNumber: Int, completionHandler: @escaping (DataResponse<ReviewsResult>) -> Void) {
         
-        let requestModel = ReviewsRequest(baseUrl: baseUrl, idProduct: idProduct)
+        let requestModel = ReviewsRequest(baseUrl: baseUrl, idProduct: idProduct, pageNumber: pageNumber)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
@@ -51,14 +51,17 @@ extension ReviewsRequest {
         
         let method: HTTPMethod = .get
         
-        let path: String = "getReviews.json"
+        let path: String = "reviews"
         
         let idProduct: Int
+        
+        let pageNumber: Int
         
         var parameters: Parameters? {
             
             return [
-                "id_product" : idProduct
+                "id_product" : idProduct,
+                "page_number" : pageNumber
             ]
             
         }

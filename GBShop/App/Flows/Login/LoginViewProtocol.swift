@@ -11,13 +11,9 @@ import UIKit
 
 protocol LoginView: NSObjectProtocol {
     
-    var presenter: LoginPresenterProtocol! {get set}
+    var presenter: LoginPresenter! {get set}
     
     func startLoading()
-    
     func finishLoading()
-    
-    func showView(viewController: UIViewController)
-    
     func showError(text: String)
 }

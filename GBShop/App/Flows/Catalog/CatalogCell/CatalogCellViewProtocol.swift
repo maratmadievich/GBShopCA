@@ -11,7 +11,5 @@ import Foundation
 protocol CatalogCellView: NSObjectProtocol {
     
     func setName(text: String)
-    
     func setPrice(text: String)
-    
 }
