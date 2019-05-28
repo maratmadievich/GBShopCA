@@ -25,6 +25,7 @@ class ProfilePresenterImplementation: ProfilePresenter {
     private var isLoad: Bool = false
     private let requestFactory = RequestFactory()
     
+    private let messageChangeTitle = "Изменение профиля"
     private let messageChangeSuccess = "Изменение прошло успешно!"
     private let errorIncorrectFields = "Одно из полей заполнено неверно"
     
@@ -71,7 +72,7 @@ class ProfilePresenterImplementation: ProfilePresenter {
                 UserSingleton.instance.setUser(user: changeProfileResponse.user)
                 DispatchQueue.main.async {
                     if let view = self.view {
-                        view.showSuccess(text: self.messageChangeSuccess)
+                        view.showSuccess(title: self.messageChangeTitle, text: self.messageChangeSuccess)
                     }
                 }
                 

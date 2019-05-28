@@ -19,7 +19,7 @@ protocol CatalogPresenter {
     func refreshCatalogRows()
     func configure(cell: CatalogCellView, forRow row: Int)
     func changeSearchText(_ text: String)
-    func showProfile()
+    func showBasket()
     func selectRow(row: Int)
 }
 
@@ -81,8 +81,8 @@ class CatalogPresenterImplementation: CatalogPresenter {
         }
     }
     
-    public func showProfile() {
-        router.showProfileScene()
+    public func showBasket() {
+        router.showBasketScene()
     }
     
     public func selectRow(row: Int) {

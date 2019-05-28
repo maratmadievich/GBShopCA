@@ -17,6 +17,7 @@ protocol BasketPresenter {
     
     func viewDidLoad()
     func configure(cell: BasketCellView, forRow row: Int)
+    func buyProducts()
 }
 
 class BasketPresenterImplementation: BasketPresenter {
@@ -27,6 +28,7 @@ class BasketPresenterImplementation: BasketPresenter {
     
     private var isLoad: Bool = false
     private let requestFactory = RequestFactory()
+    private let messagePaymentTitle = "Покупка товаров"
     
     public var rowsCount: Int {
         return model.products.count
@@ -51,6 +53,10 @@ class BasketPresenterImplementation: BasketPresenter {
         cell.setProductPrice(text: "Цена: \(productFromBasket.quantity * productFromBasket.price)р")
     }
     
+    func buyProducts() {
+        callPaymentRequest()
+    }
+    
     //MARK: - Закрытые функции
     private func callGetBasketRequest() {
         changeLoad(isLoad: true)
@@ -68,6 +74,33 @@ class BasketPresenterImplementation: BasketPresenter {
                     if let view = self.view {
                         view.setTotalAmout(text: "Купить (\(self.model.amount)р)")
                         view.refreshProducts()
+                    }
+                }
+                
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showError(text: error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
+    func callPaymentRequest() {
+        changeLoad(isLoad: true)
+        
+        let paymentRequest = requestFactory.makePaymentRequestFatory()
+        paymentRequest.payment() {
+            [unowned self] response in
+            
+            self.changeLoad(isLoad: false)
+            switch response.result {
+            case .success(let paymentResponse):
+                
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showSuccess(title: self.messagePaymentTitle, text: paymentResponse.message)
                     }
                 }
                 

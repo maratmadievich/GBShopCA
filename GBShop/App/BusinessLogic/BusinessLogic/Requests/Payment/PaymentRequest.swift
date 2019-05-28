@@ -1,14 +1,15 @@
 //
-//  GetBasketRequest.swift
+//  PaymentRequest.swift
 //  GBShop
 //
-//  Created by Admin on 5/13/19.
+//  Created by Марат Нургалиев on 28/05/2019.
 //  Copyright © 2019 Марат Нургалиев. All rights reserved.
 //
 
+import Foundation
 import Alamofire
 
-class GetBasketRequest: AbstractRequestFactory {
+class PaymentRequest: AbstractRequestFactory {
     
     let errorParser: AbstractErrorParser
     
@@ -32,37 +33,34 @@ class GetBasketRequest: AbstractRequestFactory {
     
 }
 
-extension GetBasketRequest: GetBasketRequestFactory {
+extension PaymentRequest: PaymentRequestFactory {
     
-    func getBasket(idUser: Int, completionHandler: @escaping (DataResponse<GetBasketResult>) -> Void) {
+    func payment(completionHandler: @escaping (DataResponse<PaymentResult>) -> Void) {
         
-        let requestModel = GetBasketRequest(baseUrl: baseUrl, idUser: idUser)
+        let requestModel = PaymentRequest(baseUrl: baseUrl)
         
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
 }
 
-extension GetBasketRequest {
+extension PaymentRequest {
     
-    struct GetBasketRequest: RequestRouter {
+    struct PaymentRequest: RequestRouter {
         
         let baseUrl: URL
         
-        let method: HTTPMethod = .get
+        let method: HTTPMethod = .post
         
-        let path: String = "basket"
+        let path: String = "payment"
         
-        let idUser: Int
         
         var parameters: Parameters? {
             
-            return [
-                "id_user" : idUser
-            ]
-            
+            return nil
         }
         
     }
     
 }
+

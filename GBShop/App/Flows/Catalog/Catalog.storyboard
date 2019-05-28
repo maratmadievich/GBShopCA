@@ -77,9 +77,9 @@
                         <viewLayoutGuide key="safeArea" id="wCq-Ui-E1R"/>
                     </view>
                     <navigationItem key="navigationItem" id="hd8-Zg-CQU">
-                        <barButtonItem key="rightBarButtonItem" title="Профиль" image="basket" id="g65-DA-3te">
+                        <barButtonItem key="rightBarButtonItem" title="Корзина" image="basket" id="g65-DA-3te">
                             <connections>
-                                <action selector="buttonProfileTapped:" destination="QfG-Y9-iGU" id="qo0-cg-Omj"/>
+                                <action selector="buttonBasketTapped:" destination="QfG-Y9-iGU" id="a5B-yh-0hf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -88,11 +88,20 @@
                         <outlet property="tableView" destination="aXk-Wr-mHy" id="mhd-66-6Af"/>
                         <segue destination="geq-Su-j3e" kind="show" identifier="showProfileScene" id="mEU-60-khe"/>
                         <segue destination="qY6-bN-gOU" kind="show" identifier="showProductInfoScene" id="LTd-ny-aVC"/>
+                        <segue destination="H24-TF-BW3" kind="show" identifier="showBasketScene" id="dAf-ex-WBF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfr-E3-HGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="177" y="174"/>
+        </scene>
+        <!--Basket-->
+        <scene sceneID="gQQ-zB-cHe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Basket" referencedIdentifier="Basket" id="H24-TF-BW3" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9g8-Lh-VM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="913" y="110"/>
         </scene>
         <!--Profile-->
         <scene sceneID="6f1-aH-Wex">
@@ -112,6 +121,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="basket" width="100.7213134765625" height="100.7213134765625"/>
+        <image name="basket" width="60" height="60"/>
     </resources>
 </document>

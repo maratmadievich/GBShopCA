@@ -68,7 +68,6 @@ protocol AbstractRequestFactory {
     
     var queue: DispatchQueue? { get }
     
-    
     @discardableResult
     
     func request<T: Decodable>(request: URLRequestConvertible,
@@ -78,6 +77,8 @@ protocol AbstractRequestFactory {
 extension AbstractRequestFactory {
     
     @discardableResult
+    
+    
    
     public func request<T: Decodable>(request: URLRequestConvertible,
                                       completionHandler: @escaping (DataResponse<T>) -> Void) -> DataRequest {

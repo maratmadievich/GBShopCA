@@ -46,8 +46,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flM-uB-MsO">
-                                                    <rect key="frame" x="106" y="35" width="253" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flM-uB-MsO">
+                                                    <rect key="frame" x="106" y="40" width="253" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="F2F-Cc-EOl"/>
                                                     </constraints>
@@ -55,8 +55,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZH-6E-pvq">
-                                                    <rect key="frame" x="106" y="60" width="42" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZH-6E-pvq">
+                                                    <rect key="frame" x="106" y="70" width="253" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="M8J-f8-ZWz"/>
                                                     </constraints>
@@ -92,6 +92,10 @@
                                     <outlet property="delegate" destination="Qif-q1-Pc3" id="7fJ-7j-rx7"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PEM-dV-dgf">
+                                <rect key="frame" x="178" y="334" width="20" height="20"/>
+                                <color key="color" name="colorButton"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zu1-mL-r29">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <color key="backgroundColor" name="colorButton"/>
@@ -112,13 +116,16 @@
                             <constraint firstItem="P5O-Ax-oqH" firstAttribute="trailing" secondItem="wHs-j3-k22" secondAttribute="trailing" id="Dbx-f7-krn"/>
                             <constraint firstItem="zu1-mL-r29" firstAttribute="leading" secondItem="P5O-Ax-oqH" secondAttribute="leading" id="DhZ-su-2aV"/>
                             <constraint firstItem="zu1-mL-r29" firstAttribute="top" secondItem="wHs-j3-k22" secondAttribute="bottom" id="J33-96-LhW"/>
+                            <constraint firstItem="PEM-dV-dgf" firstAttribute="centerY" secondItem="P5O-Ax-oqH" secondAttribute="centerY" id="JAL-jN-XLC"/>
                             <constraint firstItem="P5O-Ax-oqH" firstAttribute="bottom" secondItem="zu1-mL-r29" secondAttribute="bottom" id="ZFp-Mf-OrF"/>
                             <constraint firstItem="wHs-j3-k22" firstAttribute="leading" secondItem="P5O-Ax-oqH" secondAttribute="leading" id="hx3-ge-ZPS"/>
+                            <constraint firstItem="PEM-dV-dgf" firstAttribute="centerX" secondItem="P5O-Ax-oqH" secondAttribute="centerX" id="nFP-ic-10L"/>
                             <constraint firstItem="wHs-j3-k22" firstAttribute="top" secondItem="P5O-Ax-oqH" secondAttribute="top" id="y6L-FP-tzk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P5O-Ax-oqH"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="PEM-dV-dgf" id="s4T-yR-mhS"/>
                         <outlet property="buttonBuy" destination="zu1-mL-r29" id="O8c-QC-QwN"/>
                         <outlet property="tableView" destination="wHs-j3-k22" id="g7R-MA-UPX"/>
                     </connections>

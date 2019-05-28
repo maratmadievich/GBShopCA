@@ -14,7 +14,9 @@ protocol BasketView: NSObjectProtocol {
     
     func startLoading()
     func finishLoading()
-    func showError(text: String)
+    
     func refreshProducts()
     func setTotalAmout(text: String)
+    func showError(text: String)
+    func showSuccess(title: String, text: String)
 }

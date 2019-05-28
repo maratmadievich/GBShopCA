@@ -44,8 +44,8 @@ class CatalogViewController: UIViewController {
         presenter.refreshCatalogRows()
     }
     
-    @IBAction func buttonProfileTapped(_ sender: Any) {
-        presenter.showProfile()
+    @IBAction func buttonBasketTapped(_ sender: Any) {
+        presenter.showBasket()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -22,5 +22,5 @@ protocol ProfileView: NSObjectProtocol {
     func startLoading()
     func finishLoading()
     func showError(text: String)
-    func showSuccess(text: String)
+    func showSuccess(title: String, text: String)
 }

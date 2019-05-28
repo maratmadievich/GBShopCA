@@ -16,7 +16,7 @@ class RemoveReviewRequest: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://192.168.1.72:8181/")!
     
     
     init(errorParser: AbstractErrorParser,

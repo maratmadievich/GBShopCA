@@ -11,20 +11,28 @@ import UIKit
 class BasketViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var buttonBuy: UIButton!
-    
     
     private var configurator = BasketConfiguratorImplementation()
     var presenter: BasketPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurator.configure(basketViewController: self)
+        configureView()
         presenter.viewDidLoad()
+    }
+    
+    private func configureView() {
+        navigationItem.title = "Корзина"
+        activityIndicator.isHidden = true
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     
     @IBAction func buttonBuyTapped(_ sender: Any) {
-        
+        presenter.buyProducts()
     }
     
 
@@ -47,11 +55,13 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
 extension BasketViewController: BasketView {
     
     func startLoading() {
-        
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
     }
     
     func finishLoading() {
-        
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
     }
     
     func refreshProducts() {

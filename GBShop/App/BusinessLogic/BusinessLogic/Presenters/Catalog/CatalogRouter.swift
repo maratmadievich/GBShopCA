@@ -11,6 +11,7 @@ import UIKit
 protocol CatalogRouter: AbstractRouterFactory {
     
     init(view: CatalogViewController)
+    func showBasketScene()
     func showProfileScene()
     func showProductInfoScene(product: Product)
 }
@@ -22,6 +23,10 @@ class CatalogRouterImplementation: CatalogRouter {
     
     required init(view: CatalogViewController) {
         self.view = view
+    }
+    
+    public func showBasketScene() {
+        view?.performSegue(withIdentifier: "showBasketScene", sender: nil)
     }
     
     public func showProfileScene() {
