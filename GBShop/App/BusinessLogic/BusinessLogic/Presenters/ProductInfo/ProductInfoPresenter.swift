@@ -17,6 +17,7 @@ protocol ProductInfoPresenter {
     
     func viewDidLoad()
     func getReviewRows()
+    func addToBasket(quantityString: String)
     func configure(cell: ProductInfoCellView, forRow row: Int)
 }
 
@@ -28,6 +29,9 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
     
     private var isLoad: Bool = false
     private let requestFactory = RequestFactory()
+    private let messageIncorrectCount = "Вы указали некорректное количество!"
+    private let messageAddToBasketTitle = "Добавление в корзину"
+    private let messageAddToBasketText = "Добавление прошло успешно!"
     
     public var rowsCount: Int {
         return model.reviews.count
@@ -50,6 +54,19 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
         if !isLoad && model.maxReviewsCount > model.reviews.count {
             callGetReviewsRequest()
         }
+    }
+    
+    public func addToBasket(quantityString: String) {
+        let quantity = Int(quantityString) ?? 0
+        if quantity > 0 {
+            callAddToBasketRequest(quantity: quantity)
+        } else {
+            guard let view = view else {
+                return
+            }
+            view.showError(text: messageIncorrectCount)
+        }
+        
     }
     
     public func configure(cell: ProductInfoCellView, forRow row: Int) {
@@ -78,6 +95,32 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
                     }
                 }
                
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showError(text: error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func callAddToBasketRequest(quantity: Int) {
+        changeLoad(isLoad: true)
+        
+        let addToBasketRequest = requestFactory.makeAddToBasketRequestFatory()
+        addToBasketRequest.addToBasket(idProduct: model.product.id, quantity: quantity) {
+            [unowned self] response in
+            
+            self.changeLoad(isLoad: false)
+            switch response.result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    if let view = self.view {
+                        view.showSuccess(title: self.messageAddToBasketTitle, text: self.messageAddToBasketText)
+                    }
+                }
+                
             case .failure(let error):
                 DispatchQueue.main.async {
                     if let view = self.view {

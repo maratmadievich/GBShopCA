@@ -49,9 +49,9 @@ extension AddToBasketRequest {
         
         let baseUrl: URL
         
-        let method: HTTPMethod = .get
+        let method: HTTPMethod = .post
         
-        let path: String = "addToBasket.json"
+        let path: String = "basket/add"
         
         let idProduct: Int
         

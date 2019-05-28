@@ -8,7 +8,8 @@
 
 import UIKit
 
-protocol ProtocolShowNetworkAlert { }
+protocol ProtocolShowNetworkAlert {
+}
 
 extension ProtocolShowNetworkAlert where Self: UIViewController {
     

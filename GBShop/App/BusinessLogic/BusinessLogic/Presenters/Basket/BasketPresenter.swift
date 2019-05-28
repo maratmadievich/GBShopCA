@@ -65,20 +65,18 @@ class BasketPresenterImplementation: BasketPresenter {
         getBasketRequest.getBasket(idUser: UserSingleton.instance.getUser().id) {
             [unowned self] response in
             
-            self.changeLoad(isLoad: false)
-            switch response.result {
-            case .success(let getBasketResponse):
-                self.model.products.append(contentsOf: getBasketResponse.products)
-                self.model.amount = getBasketResponse.amount
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                self.changeLoad(isLoad: false)
+                switch response.result {
+                case .success(let getBasketResponse):
+                    self.model.products.append(contentsOf: getBasketResponse.products)
+                    self.model.amount = getBasketResponse.amount
                     if let view = self.view {
                         view.setTotalAmout(text: "Купить (\(self.model.amount)р)")
                         view.refreshProducts()
                     }
-                }
-                
-            case .failure(let error):
-                DispatchQueue.main.async {
+                    
+                case .failure(let error):
                     if let view = self.view {
                         view.showError(text: error.localizedDescription)
                     }
@@ -94,18 +92,15 @@ class BasketPresenterImplementation: BasketPresenter {
         paymentRequest.payment() {
             [unowned self] response in
             
-            self.changeLoad(isLoad: false)
-            switch response.result {
-            case .success(let paymentResponse):
-                
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                self.changeLoad(isLoad: false)
+                switch response.result {
+                case .success(let paymentResponse):
                     if let view = self.view {
                         view.showSuccess(title: self.messagePaymentTitle, text: paymentResponse.message)
                     }
-                }
-                
-            case .failure(let error):
-                DispatchQueue.main.async {
+                    
+                case .failure(let error):
                     if let view = self.view {
                         view.showError(text: error.localizedDescription)
                     }
@@ -113,6 +108,7 @@ class BasketPresenterImplementation: BasketPresenter {
             }
         }
     }
+
     
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad

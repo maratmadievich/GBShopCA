@@ -72,6 +72,20 @@ extension BasketViewController: BasketView {
         buttonBuy.setTitle(text, for: .normal)
     }
     
+    func showError(text: String) {
+        let alert = UIAlertController(title: "Ошибка", message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func showSuccess(title: String, text: String) {
+        let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: {
+            [unowned self] action in
+            
+            self.presenter.router.dismiss()
+        }))
+        self.present(alert, animated: true)
+    }
+    
 }
-
-extension BasketViewController: ProtocolShowNetworkAlert {}
