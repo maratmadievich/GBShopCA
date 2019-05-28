@@ -16,7 +16,7 @@ class DeleteFromBasketRequest: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://10.12.2.82:8181/")!
     
     
     init(errorParser: AbstractErrorParser,

@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		4264D6184B64D63065121F15 /* Pods_GBShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ECD484D1447A2B4E74F2D6B /* Pods_GBShopTests.framework */; };
+		840800C9229D444A0071BFBE /* Basket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840800C8229D444A0071BFBE /* Basket.storyboard */; };
+		840800CB229D48110071BFBE /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840800CA229D48110071BFBE /* BasketViewController.swift */; };
+		840800CD229D48440071BFBE /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840800CC229D48440071BFBE /* BasketView.swift */; };
+		840800D0229D48A30071BFBE /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840800CF229D48A30071BFBE /* BasketTableViewCell.swift */; };
+		840800D2229D48C40071BFBE /* BasketCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840800D1229D48C40071BFBE /* BasketCellView.swift */; };
+		840800D5229D49C10071BFBE /* BasketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840800D4229D49C10071BFBE /* BasketPresenter.swift */; };
+		840800D7229D49CE0071BFBE /* BasketConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840800D6229D49CE0071BFBE /* BasketConfigurator.swift */; };
+		840800D9229D49D80071BFBE /* BasketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840800D8229D49D80071BFBE /* BasketRouter.swift */; };
+		840800DB229D4A670071BFBE /* BasketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840800DA229D4A670071BFBE /* BasketModel.swift */; };
 		842ABF41226DBA4E0039AAB5 /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF40226DBA4E0039AAB5 /* AbstractErrorParser.swift */; };
 		842ABF43226DBA740039AAB5 /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF42226DBA740039AAB5 /* ErrorParser.swift */; };
 		842ABF45226DBA9F0039AAB5 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842ABF44226DBA9F0039AAB5 /* DataRequest.swift */; };
@@ -136,6 +145,15 @@
 		5684453B96B6E5A3DAC93C6F /* Pods_GBShopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBShopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D4BE282B5F76D572CB120B /* Pods-GBShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBShopTests.debug.xcconfig"; path = "Target Support Files/Pods-GBShopTests/Pods-GBShopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		813A017F26E2F2CCF9481328 /* Pods_GBShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		840800C8229D444A0071BFBE /* Basket.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Basket.storyboard; sourceTree = "<group>"; };
+		840800CA229D48110071BFBE /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		840800CC229D48440071BFBE /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
+		840800CF229D48A30071BFBE /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
+		840800D1229D48C40071BFBE /* BasketCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCellView.swift; sourceTree = "<group>"; };
+		840800D4229D49C10071BFBE /* BasketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketPresenter.swift; sourceTree = "<group>"; };
+		840800D6229D49CE0071BFBE /* BasketConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketConfigurator.swift; sourceTree = "<group>"; };
+		840800D8229D49D80071BFBE /* BasketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketRouter.swift; sourceTree = "<group>"; };
+		840800DA229D4A670071BFBE /* BasketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketModel.swift; sourceTree = "<group>"; };
 		842ABF40226DBA4E0039AAB5 /* AbstractErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
 		842ABF42226DBA740039AAB5 /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		842ABF44226DBA9F0039AAB5 /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
@@ -271,6 +289,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840800C7229D441E0071BFBE /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				840800CE229D48870071BFBE /* BasketCell */,
+				840800C8229D444A0071BFBE /* Basket.storyboard */,
+				840800CA229D48110071BFBE /* BasketViewController.swift */,
+				840800CC229D48440071BFBE /* BasketView.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		840800CE229D48870071BFBE /* BasketCell */ = {
+			isa = PBXGroup;
+			children = (
+				840800CF229D48A30071BFBE /* BasketTableViewCell.swift */,
+				840800D1229D48C40071BFBE /* BasketCellView.swift */,
+			);
+			path = BasketCell;
+			sourceTree = "<group>";
+		};
+		840800D3229D49A70071BFBE /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				840800D4229D49C10071BFBE /* BasketPresenter.swift */,
+				840800D6229D49CE0071BFBE /* BasketConfigurator.swift */,
+				840800D8229D49D80071BFBE /* BasketRouter.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
 		842ABF3F226DB9F10039AAB5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +442,7 @@
 				84ECB546229271C80017FFF2 /* Catalog */,
 				84451BC6229CE56C00BF5352 /* Profile */,
 				84451BCD229CE5B100BF5352 /* ProductInfo */,
+				840800D3229D49A70071BFBE /* Basket */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -426,6 +475,7 @@
 				84ECB5292292641B0017FFF2 /* ProfileModel.swift */,
 				84ECB54B229278900017FFF2 /* CatalogModel.swift */,
 				84451BD4229CE60000BF5352 /* ProductInfoModel.swift */,
+				840800DA229D4A670071BFBE /* BasketModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -676,6 +726,7 @@
 				84451BD6229CE62400BF5352 /* Profile */,
 				84ECB53F2292708A0017FFF2 /* Catalog */,
 				84451BAE229CE3DE00BF5352 /* ProductInfo */,
+				840800C7229D441E0071BFBE /* Basket */,
 				AAE88ACF2273136F006AF755 /* .empty */,
 			);
 			path = Flows;
@@ -938,6 +989,7 @@
 				AA8B4AEC2268C5AC00B9DE15 /* Assets.xcassets in Resources */,
 				84451BD8229CE64200BF5352 /* Profile.storyboard in Resources */,
 				84451BB0229CE3F600BF5352 /* ProductInfo.storyboard in Resources */,
+				840800C9229D444A0071BFBE /* Basket.storyboard in Resources */,
 				AAE88AD02273136F006AF755 /* .empty in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1058,11 +1110,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840800D2229D48C40071BFBE /* BasketCellView.swift in Sources */,
+				840800CB229D48110071BFBE /* BasketViewController.swift in Sources */,
 				AAFB9DB822815C3600DD5B22 /* RemoveReviewRequestFactory.swift in Sources */,
 				842BF7DA228E851900E9499D /* LoginPresenter.swift in Sources */,
 				84451BD1229CE5CF00BF5352 /* ProductInfoPresenter.swift in Sources */,
 				AAFB9DAD22815BBE00DD5B22 /* AddReviewRequest.swift in Sources */,
 				AAE88AB6227310DA006AF755 /* ProductRequestFactory.swift in Sources */,
+				840800CD229D48440071BFBE /* BasketView.swift in Sources */,
 				842ABF50226DCBFF0039AAB5 /* RequestFactory.swift in Sources */,
 				84451BD3229CE5D400BF5352 /* ProductInfoRouter.swift in Sources */,
 				AAFB9DAA22815B3F00DD5B22 /* ReviewsResult.swift in Sources */,
@@ -1089,6 +1144,7 @@
 				AAFB9DA622815AE600DD5B22 /* ReviewsRequest.swift in Sources */,
 				84451BDC229CE64C00BF5352 /* ProfileViewProtocol.swift in Sources */,
 				84ECB54C229278900017FFF2 /* CatalogModel.swift in Sources */,
+				840800D5229D49C10071BFBE /* BasketPresenter.swift in Sources */,
 				84ECB53D229267D20017FFF2 /* ProtocolShowView.swift in Sources */,
 				AAFB9DB322815BFE00DD5B22 /* RemoveReviewResult.swift in Sources */,
 				84451BC8229CE58A00BF5352 /* ProfileConfigurator.swift in Sources */,
@@ -1099,12 +1155,14 @@
 				842BF7E7228ECB1000E9499D /* LoginModel.swift in Sources */,
 				842ABF4C226DCAD20039AAB5 /* LoginRequestFactory.swift in Sources */,
 				AAFB9DB122815BE700DD5B22 /* AddReviewResult.swift in Sources */,
+				840800D0229D48A30071BFBE /* BasketTableViewCell.swift in Sources */,
 				84451BD5229CE60000BF5352 /* ProductInfoModel.swift in Sources */,
 				84451BCA229CE59000BF5352 /* ProfilePresenter.swift in Sources */,
 				AAFB9DAF22815BD200DD5B22 /* AddReviewRequestFactory.swift in Sources */,
 				84451BCF229CE5CA00BF5352 /* ProductInfoConfigurator.swift in Sources */,
 				84ECB54A229271FA0017FFF2 /* CatalogPresenter.swift in Sources */,
 				842ABF58226DD2180039AAB5 /* LogoutResult.swift in Sources */,
+				840800D7229D49CE0071BFBE /* BasketConfigurator.swift in Sources */,
 				842ABF5B226EC8B70039AAB5 /* ChangeProfile.swift in Sources */,
 				843080C222892FFA00E02F95 /* AddToBasketRequestFactory.swift in Sources */,
 				842ABF5D226EC8CB0039AAB5 /* ChangeProfileRequestFactory.swift in Sources */,
@@ -1119,6 +1177,7 @@
 				AAE88ABD227311A4006AF755 /* CatalogDataResult.swift in Sources */,
 				AAE88AB2227310B6006AF755 /* ProductResult.swift in Sources */,
 				842ABF41226DBA4E0039AAB5 /* AbstractErrorParser.swift in Sources */,
+				840800D9229D49D80071BFBE /* BasketRouter.swift in Sources */,
 				84ECB53B229266780017FFF2 /* ProtocolShowNetworkAlert.swift in Sources */,
 				842BF7E9228ECCDA00E9499D /* RegistrationModel.swift in Sources */,
 				AAFB9DA822815AFE00DD5B22 /* ReviewsRequestFactory.swift in Sources */,
@@ -1138,6 +1197,7 @@
 				84451BE5229CE7E500BF5352 /* CatalogRouter.swift in Sources */,
 				842BF7DC228E87D400E9499D /* LoginViewProtocol.swift in Sources */,
 				84451BE9229CEAF100BF5352 /* RegistrationRouter.swift in Sources */,
+				840800DB229D4A670071BFBE /* BasketModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

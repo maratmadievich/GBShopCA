@@ -29,6 +29,33 @@ class ProductInfoViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+    @IBAction func buttonAddToBasketTapped(_ sender: Any) {
+        showProductCountAlert()
+    }
+    
+    private func showProductCountAlert() {
+        
+        let alert = UIAlertController(title: "Добавление товара", message: "Please input something", preferredStyle: UIAlertController.Style.alert)
+        
+        let action = UIAlertAction(title: "Добавить", style: .default) { (alertAction) in
+            let textField = alert.textFields![0] as UITextField
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Количество"
+            textField.keyboardType = .numberPad
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { (alertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        self.present(self, animated: true, completion: nil)
+    }
+    
 }
 
 extension ProductInfoViewController: UITableViewDelegate, UITableViewDataSource {

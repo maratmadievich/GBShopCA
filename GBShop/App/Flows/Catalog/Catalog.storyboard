@@ -77,7 +77,7 @@
                         <viewLayoutGuide key="safeArea" id="wCq-Ui-E1R"/>
                     </view>
                     <navigationItem key="navigationItem" id="hd8-Zg-CQU">
-                        <barButtonItem key="rightBarButtonItem" title="Профиль" id="g65-DA-3te">
+                        <barButtonItem key="rightBarButtonItem" title="Профиль" image="basket" id="g65-DA-3te">
                             <connections>
                                 <action selector="buttonProfileTapped:" destination="QfG-Y9-iGU" id="qo0-cg-Omj"/>
                             </connections>
@@ -111,4 +111,7 @@
             <point key="canvasLocation" x="862" y="241"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="basket" width="100.7213134765625" height="100.7213134765625"/>
+    </resources>
 </document>
