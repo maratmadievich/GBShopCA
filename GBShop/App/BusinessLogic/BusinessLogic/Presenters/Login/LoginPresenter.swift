@@ -8,17 +8,22 @@
 
 import Foundation
 import UIKit
-import Alamofire
 
+//Протокол Пресентера для окна авторизации
 protocol LoginPresenter {
     
+    //Указание наличия роутера для переходов из окна авторизации
     var router: LoginRouter { get }
     
+    //Указание инициализации пресентера
     init (view: LoginView, model: LoginModel, router: LoginRouter)
+    //Функция для передачи введеных логина и пароля для авторизации
     func login(userName: String, password: String)
+    //Функция для перехода к окну регистрации
     func registrate()
 }
 
+//реализация Пресентера для окна авторизации
 class LoginPresenterImplementation: LoginPresenter {
     
     fileprivate weak var view: LoginView?
@@ -39,6 +44,9 @@ class LoginPresenterImplementation: LoginPresenter {
         self.router = router
     }
     
+    //В данной функции производится проверка полученных данных
+    //Если данные коррекны, вызывается метод авторизации
+    //иначе выводится ошибка
     public func login(userName: String, password: String) {
         if !isLoad {
             guard let view = view else {
@@ -64,6 +72,9 @@ class LoginPresenterImplementation: LoginPresenter {
     }
     
     //MARK: - Закрытые функции
+    //В данной функции происходит попытка авторизации
+    //При успешной авторизации записывает данные
+    //иначе выводится ошибка
     private func callLoginRequest() {
         changeLoad(isLoad: true)
         let loginRequest = requestFactory.makeLoginRequestFactory()
@@ -87,6 +98,7 @@ class LoginPresenterImplementation: LoginPresenter {
         }
     }
     
+    //Функция для смены состояния загрузки
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
         if let view = view {
@@ -94,6 +106,8 @@ class LoginPresenterImplementation: LoginPresenter {
         }
     }
     
+    //Функция, в которой происходят действия
+    //после успешной авторизации
     private func handleLoginSuccess() {
         router.showCatalogScene()
     }

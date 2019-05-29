@@ -9,14 +9,19 @@
 import Foundation
 import UIKit
 
+//Протокол Пресентера для окна регистрации
 protocol RegistrationPresenter {
     
+    //Указание наличия роутера для переходов из окна регистрации
     var router: RegistrationRouter { get }
     
+    //Указание инициализации пресентера
     init (view: RegistrationView, model: RegistrationModel, router: RegistrationRouter)
+    //Функция для передачи введеных данных для регистрации
     func registrate(userName: String, password: String, email: String, isGenderMan: Bool)
 }
 
+//реализация Пресентера для окна регистрации
 class RegistrationPresenterImplementation: RegistrationPresenter {
     
     fileprivate weak var view: RegistrationView?
@@ -33,6 +38,9 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
         self.router = router
     }
     
+    //В данной функции производится проверка полученных данных
+    //Если данные коррекны, вызывается метод регистрации
+    //иначе выводится ошибка
     public func registrate(userName: String, password: String, email: String, isGenderMan: Bool) {
         
         if !isLoad {
@@ -50,6 +58,9 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
     }
     
     //MARK: - Закрытые функции
+    //В данной функции происходит попытка регистрации
+    //При успешной регистрации записывает данные
+    //иначе выводится ошибка
     private func callRegistrationRequest() {
         changeLoad(isLoad: true)
         
@@ -73,6 +84,7 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
         }
     }
     
+    //Функция для смены состояния загрузки
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
         if let view = view {
@@ -80,6 +92,8 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
         }
     }
     
+    //Функция, в которой происходят действия
+    //после успешной регистрации
     private func handleRegistrationSuccess() {
         router.showCatalogScene()
     }

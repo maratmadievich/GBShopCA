@@ -8,14 +8,19 @@
 
 import Foundation
 
+//Протокол Пресентера для окна смены профиля
 protocol ProfilePresenter {
     
+    //Указание наличия роутера для переходов из окна смены профиля
     var router: ProfileRouter { get }
     
+    //Указание инициализации пресентера
     init (view: ProfileView, model: ProfileModel, router: ProfileRouter)
+    //Функция для передачи введеных данных для смены профиля
     func changeProfile(userName: String, password: String, email: String, isGenderMan: Bool, card: String, bio: String)
 }
 
+//реализация Пресентера для окна смены профиля
 class ProfilePresenterImplementation: ProfilePresenter {
     
     fileprivate weak var view: ProfileView?
@@ -29,7 +34,7 @@ class ProfilePresenterImplementation: ProfilePresenter {
     private let messageChangeSuccess = "Изменение прошло успешно!"
     private let errorIncorrectFields = "Одно из полей заполнено неверно"
     
-    
+    //MARK: - Публичные функции
     required init(view: ProfileView, model: ProfileModel, router: ProfileRouter) {
         self.view = view
         self.model = model
@@ -37,7 +42,9 @@ class ProfilePresenterImplementation: ProfilePresenter {
         showProfileData()
     }
     
-    //MARK: - Публичные функции
+    //В данной функции производится проверка полученных данных
+    //Если данные коррекны, вызывается метод смены профиля
+    //иначе выводится ошибка
     public func changeProfile(userName: String, password: String, email: String, isGenderMan: Bool, card: String, bio: String) {
         
         if !isLoad {
@@ -59,6 +66,9 @@ class ProfilePresenterImplementation: ProfilePresenter {
     }
     
     //MARK: - Закрытые функции
+    //В данной функции происходит попытка смены профиля
+    //При успешной регистрации записывает данные
+    //иначе выводится ошибка
     private func callChangeProfileRequest() {
         changeLoad(isLoad: true)
         
@@ -86,6 +96,7 @@ class ProfilePresenterImplementation: ProfilePresenter {
         }
     }
     
+    //Функция для отображения текущих данных пользователя
     private func showProfileData() {
         guard let view = view else {
             return

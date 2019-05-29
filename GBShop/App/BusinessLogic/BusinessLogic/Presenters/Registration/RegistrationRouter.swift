@@ -8,9 +8,11 @@
 
 import UIKit
 
+//Протокол Роутера для окна авторизации
 protocol RegistrationRouter: AbstractRouterFactory {
-    
+    //Указание иинциализации роутера
     init(view: RegistrationViewController)
+    //Функция для перехода к окну Каталога
     func showCatalogScene()
 }
 
@@ -27,6 +29,7 @@ class RegistrationRouterImplementation: RegistrationRouter {
         view?.performSegue(withIdentifier: "showCatalogScene", sender: nil)
     }
     
+    //Функция для настройки открываяющихся контроллеров перед самим переходом
     public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = ""

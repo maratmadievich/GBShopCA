@@ -8,12 +8,16 @@
 
 import UIKit
 
+//Протокол Роутера для окна корзины
 protocol BasketRouter: AbstractRouterFactory {
     
+    //Указание иинциализации роутера
     init(view: BasketViewController)
+    //Функция закрытия данного окна
     func dismiss()
 }
 
+//Протокол Роутера для окна корзины
 class BasketRouterImplementation: BasketRouter {
     
     fileprivate weak var view: BasketViewController?
@@ -26,9 +30,4 @@ class BasketRouterImplementation: BasketRouter {
         view?.navigationController?.popViewController(animated: true)
     }
     
-    public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        view?.navigationItem.backBarButtonItem = backItem
-    }
 }

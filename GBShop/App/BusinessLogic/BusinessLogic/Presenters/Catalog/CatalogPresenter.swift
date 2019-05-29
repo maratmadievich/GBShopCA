@@ -9,17 +9,27 @@
 import Foundation
 import UIKit
 
+//Протокол Пресентера для окна списка товаров
 protocol CatalogPresenter {
     
-    var rowsCount: Int { get }
+    //Указание наличия роутера для переходов из окна списка товаров
     var router: CatalogRouter { get }
+    //Указание наличия переменной, отражающей количество строк в списке
+    var rowsCount: Int { get }
     
+    //Указание инициализации пресентера
     init (view: CatalogView, model: CatalogModel, router: CatalogRouter)
+    //Функция для получения списка товаров
     func getCatalogRows()
+    //Функция для обновления списка товаров
     func refreshCatalogRows()
+    //Функция для конфигурации ячейки списка товаров
     func configure(cell: CatalogCellView, forRow row: Int)
+    //Функция для получения списка товаров по введенному Пользователем тексту
     func changeSearchText(_ text: String)
+    //Функция для перехода в окно Корзина
     func showBasket()
+    ///Функция, вызываемая при выборе Пользователем товара
     func selectRow(row: Int)
 }
 
@@ -37,13 +47,16 @@ class CatalogPresenterImplementation: CatalogPresenter {
     private let requestFactory = RequestFactory()
     
     
+    //MARK: - Публичные функции
     required init(view: CatalogView, model: CatalogModel, router: CatalogRouter) {
         self.view = view
         self.model = model
         self.router = router
     }
     
-    //MARK: - Публичные функции
+    //В данной функции устанавливаются дефолтные параметры,
+    //обновляется окно списка продуктов и
+    //вызывается функция получения списка товаров
     public func refreshCatalogRows() {
         model.pageNumber = 0
         model.maxRowsCount = 1000
@@ -57,6 +70,8 @@ class CatalogPresenterImplementation: CatalogPresenter {
         getCatalogRows()
     }
     
+    //Проверяются данные и
+    //вызывается API-метод получения списка товаров
     public func getCatalogRows() {
         if !isLoad && !model.isSearchable && model.maxRowsCount > model.products.count {
             callGetCatalogRequest()
@@ -69,6 +84,9 @@ class CatalogPresenterImplementation: CatalogPresenter {
         cell.setPrice(text: String(product.price))
     }
     
+    //Проверяется текст, введенный пользователем
+    //и в зависимости от его наличия отображаются товары,
+    //в названии которых есть поисковое слово или все товары
     public func changeSearchText(_ text: String) {
         let trimmingSearchText = text.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         model.isSearchable = trimmingSearchText.count > 0
@@ -90,6 +108,9 @@ class CatalogPresenterImplementation: CatalogPresenter {
     }
     
     //MARK: - Закрытые функции
+    //В данной функции происходит попытка получения
+    //списка товаров и при успешной попытке
+    //данные отображаются или выводится ошибка
     private func callGetCatalogRequest() {
         changeLoad(isLoad: true)
         

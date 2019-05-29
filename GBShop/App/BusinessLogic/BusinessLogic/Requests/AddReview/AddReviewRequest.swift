@@ -16,7 +16,7 @@ class AddReviewRequest: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "http://192.168.1.72:8181/")!
+    let baseUrl = BaseUrlSingleton.instance.getUrl()
     
     
     init(errorParser: AbstractErrorParser,

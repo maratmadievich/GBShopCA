@@ -8,15 +8,21 @@
 
 import Foundation
 
+//Протокол Пресентера для окна корзины
 protocol BasketPresenter {
     
+    //Указание наличия роутера для переходов из окна корзины
     var router: BasketRouter { get }
+    //Указание наличия переменной, отражающей количество строк в списке
     var rowsCount: Int { get }
     
+    //Указание инициализации пресентера
     init (view: BasketView, model: BasketModel, router: BasketRouter)
-    
+    //Функция, вызываемая в момент, когда окно загрузится
     func viewDidLoad()
+    //Функция для конфигурации ячейки списка товаров в корзине
     func configure(cell: BasketCellView, forRow row: Int)
+    //Функция оплаты товаров в корзине
     func buyProducts()
 }
 
@@ -34,14 +40,14 @@ class BasketPresenterImplementation: BasketPresenter {
         return model.products.count
     }
     
-    
+    //MARK: - Публичные функции
     required init(view: BasketView, model: BasketModel, router: BasketRouter) {
         self.view = view
         self.model = model
         self.router = router
     }
     
-    //MARK: - Публичные функции
+    //Здесь вызывается API-метод по получению списка товаров в корзине
     public func viewDidLoad() {
         callGetBasketRequest()
     }
@@ -53,11 +59,15 @@ class BasketPresenterImplementation: BasketPresenter {
         cell.setProductPrice(text: "Цена: \(productFromBasket.quantity * productFromBasket.price)р")
     }
     
+    //Здесь вызывается API-метод по оплате товаров
     func buyProducts() {
         callPaymentRequest()
     }
     
     //MARK: - Закрытые функции
+    //В данной функции происходит попытка получения
+    //списка товаров и при успешной попытке
+    //данные отображаются или выводится ошибка
     private func callGetBasketRequest() {
         changeLoad(isLoad: true)
         
@@ -85,7 +95,10 @@ class BasketPresenterImplementation: BasketPresenter {
         }
     }
     
-    func callPaymentRequest() {
+    //В данной функции происходит попытка оплаты и
+    //при успешной попытке выводится уведомление об оплате
+    //или выводится ошибка
+    private func callPaymentRequest() {
         changeLoad(isLoad: true)
         
         let paymentRequest = requestFactory.makePaymentRequestFatory()

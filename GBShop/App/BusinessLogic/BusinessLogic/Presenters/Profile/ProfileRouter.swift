@@ -8,9 +8,12 @@
 
 import UIKit
 
+//Протокол Роутера для окна смены профиля
 protocol ProfileRouter: AbstractRouterFactory {
     
+    //Указание иинциализации роутера
     init(view: ProfileViewController)
+    //Функция закрытия данного окна
     func dismiss()
 }
 

@@ -8,11 +8,14 @@
 
 import Foundation
 
+//Протокол Конфигуратора для окна регистрации
 protocol RegistrationConfigurator {
     
+    //Описание функции по конфигурированию registrationViewController
     func configure(registrationViewController: RegistrationViewController)
 }
 
+//Реализация Конфигуратора для окна регистрации
 class RegistrationConfiguratorImplementation: RegistrationConfigurator {
     
     public func configure(registrationViewController: RegistrationViewController) {

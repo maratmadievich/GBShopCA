@@ -8,17 +8,20 @@
 
 import UIKit
 
+//Протокол Роутера для окна авторизации
 protocol LoginRouter: AbstractRouterFactory {
-    
+    //Указание иинциализации роутера
     init(view: LoginViewController)
+    //Функция для перехода к окну Регистрации
     func showRegistrateScene()
+    //Функция для перехода к окну Каталога
     func showCatalogScene()
 }
 
+//Реализация Роутера для окна авторизации
 class LoginRouterImplementation: LoginRouter {
     
     fileprivate weak var view: LoginViewController?
-    
     
     required init(view: LoginViewController) {
         self.view = view
@@ -32,6 +35,7 @@ class LoginRouterImplementation: LoginRouter {
         view?.performSegue(withIdentifier: "showCatalogScene", sender: nil)
     }
     
+    //Функция для настройки открываяющихся контроллеров перед самим переходом
     public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = ""

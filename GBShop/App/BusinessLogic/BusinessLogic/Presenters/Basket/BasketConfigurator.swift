@@ -8,11 +8,14 @@
 
 import Foundation
 
+//Протокол Конфигуратора для окна корзины
 protocol BasketConfigurator {
     
+    //Описание функции по конфигурированию basketViewController
     func configure(basketViewController: BasketViewController)
 }
 
+//Реализация Конфигуратора для окна корзины
 class BasketConfiguratorImplementation: BasketConfigurator {
     
     public func configure(basketViewController: BasketViewController) {
