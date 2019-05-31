@@ -9,31 +9,48 @@
 import Foundation
 import UIKit
 
-//Протокол Пресентера для окна списка товаров
-protocol CatalogPresenter {
+/// Описывает Пресентер для окна списка товаров
+internal protocol CatalogPresenter {
     
-    //Указание наличия роутера для переходов из окна списка товаров
+    /// Указывает наличие роутера для переходов из окна списка товаров
     var router: CatalogRouter { get }
-    //Указание наличия переменной, отражающей количество строк в списке
+    
+    /// Указывает количество товаров
     var rowsCount: Int { get }
     
-    //Указание инициализации пресентера
+    /// Описание необходимой инициализации
+    /// Параметры:
+    /// - view: объект, имеющий расширение CatalogView для реализации модели MVP
+    /// - model: модель для реализации модели MVP
+    /// - router: объект, имеющий расширение CatalogRouter для реализации переходов
     init (view: CatalogView, model: CatalogModel, router: CatalogRouter)
-    //Функция для получения списка товаров
+    
+    /// Вызывает загрузку списка товаров
     func getCatalogRows()
-    //Функция для обновления списка товаров
+    
+    /// Осуществляет обновление списка товаров
     func refreshCatalogRows()
-    //Функция для конфигурации ячейки списка товаров
+    
+    /// Осуществляет конфигурацию ячейки товара
+    /// Параметры:
+    /// - cell: отображаемая ячейка
+    /// - row: порядковый ячейки
     func configure(cell: CatalogCellView, forRow row: Int)
-    //Функция для получения списка товаров по введенному Пользователем тексту
+    
+    /// Осуществляет фильтрацию списка товаров согласно
+    /// введенному пользователем текста
+    /// Параметры:
+    /// - text: введенный пользователем текст
     func changeSearchText(_ text: String)
-    //Функция для перехода в окно Корзина
+    
+    /// Осуществляет переход к окну Корзина
     func showBasket()
-    ///Функция, вызываемая при выборе Пользователем товара
-    func selectRow(row: Int)
+    
+    /// Осуществляет переход к окну Информация о товаре
+    func showProductInfo(row: Int)
 }
 
-class CatalogPresenterImplementation: CatalogPresenter {
+internal class CatalogPresenterImplementation: CatalogPresenter {
     
     fileprivate weak var view: CatalogView?
     private var model: CatalogModel
@@ -103,14 +120,12 @@ class CatalogPresenterImplementation: CatalogPresenter {
         router.showBasketScene()
     }
     
-    public func selectRow(row: Int) {
+    public func showProductInfo(row: Int) {
         router.showProductInfoScene(product: model.getProduct(by: row))
     }
     
     //MARK: - Закрытые функции
-    //В данной функции происходит попытка получения
-    //списка товаров и при успешной попытке
-    //данные отображаются или выводится ошибка
+    
     private func callGetCatalogRequest() {
         changeLoad(isLoad: true)
         
@@ -124,28 +139,45 @@ class CatalogPresenterImplementation: CatalogPresenter {
                 self.model.products.append(contentsOf: catalogResponse.products)
                 self.model.pageNumber += 1
                 self.model.maxRowsCount = catalogResponse.maxRowsCount
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.refreshCatalogView()
-                    }
-                }
+                self.handleGetCatalogSuccess()
                 
             case .failure(let error):
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.showError(text: error.localizedDescription)
-                    }
-                }
+                self.handleError(error: error.localizedDescription)
             }
         }
     }
     
+    /// Меняет состояние загрузки данных на экране
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
         if let view = view {
-            isLoad ? view.startLoading() : view.finishLoading()
+            DispatchQueue.main.async {
+                isLoad ? view.startLoading() : view.finishLoading()
+            }
         }
     }
+    
+    /// Вызывает метод для обновления списка товаров
+    private func handleGetCatalogSuccess() {
+        Analytic.instance.sendEvent(method: .catalog, parameters: nil)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.refreshCatalogView()
+            }
+        }
+    }
+    
+    /// Отображает ошибки на экране
+    private func handleError(error: String) {
+        Analytic.instance.assertionFailure(method: .login, message: error)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showError(text: error)
+            }
+        }
+    }
+    
+ 
     
 }
 

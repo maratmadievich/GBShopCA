@@ -61,10 +61,7 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
         if quantity > 0 {
             callAddToBasketRequest(quantity: quantity)
         } else {
-            guard let view = view else {
-                return
-            }
-            view.showError(text: messageIncorrectCount)
+            handleError(error: messageIncorrectCount)
         }
         
     }
@@ -89,18 +86,10 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
                 self.model.reviews.append(contentsOf: getReviewsResponse.reviews)
                 self.model.pageNumber += 1
                 self.model.maxReviewsCount = getReviewsResponse.maxRowsCount
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.refreshReviews()
-                    }
-                }
+                self.handleGetReviewsSuccess()
                
             case .failure(let error):
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.showError(text: error.localizedDescription)
-                    }
-                }
+                self.handleError(error: error.localizedDescription)
             }
         }
     }
@@ -115,18 +104,10 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
             self.changeLoad(isLoad: false)
             switch response.result {
             case .success(_):
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.showSuccess(title: self.messageAddToBasketTitle, text: self.messageAddToBasketText)
-                    }
-                }
+                self.handleAddToBasketSuccess()
                 
             case .failure(let error):
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.showError(text: error.localizedDescription)
-                    }
-                }
+                self.handleError(error: error.localizedDescription)
             }
         }
     }
@@ -139,12 +120,44 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
         view.setProductPrice(text: "Цена: \(model.product.price)р")
     }
     
+    /// Меняет состояние загрузки данных на экране
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
         if let view = view {
-            isLoad ? view.startLoading() : view.finishLoading()
+            DispatchQueue.main.async {
+                isLoad ? view.startLoading() : view.finishLoading()
+            }
         }
-        
+    }
+    
+    /// Отображает коментарии к товару
+    private func handleGetReviewsSuccess() {
+        Analytic.instance.sendEvent(method: .reviews, parameters: nil)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.refreshReviews()
+            }
+        }
+    }
+    
+    /// Вызывает метод для перехода к экрану Списка товаров
+    private func handleAddToBasketSuccess() {
+        Analytic.instance.sendEvent(method: .addToBasket, parameters: ["product": model.product.name])
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showSuccess(title: self.messageAddToBasketTitle, text: self.messageAddToBasketText)
+            }
+        }
+    }
+    
+    /// Отображает ошибки на экране
+    private func handleError(error: String) {
+        Analytic.instance.assertionFailure(method: .login, message: error)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showError(text: error)
+            }
+        }
     }
     
 }

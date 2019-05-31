@@ -9,7 +9,7 @@
 import UIKit
 
 //Протокол Роутера для окна списка товаров
-protocol CatalogRouter: AbstractRouterFactory {
+internal protocol CatalogRouter: AbstractRouterFactory {
     
     //Указание иинциализации роутера
     init(view: CatalogViewController)
@@ -22,7 +22,7 @@ protocol CatalogRouter: AbstractRouterFactory {
 }
 
 //Протокол Роутера для окна списка товаров
-class CatalogRouterImplementation: CatalogRouter {
+internal class CatalogRouterImplementation: CatalogRouter {
     
     fileprivate weak var view: CatalogViewController?
     private var product: Product!
@@ -45,10 +45,10 @@ class CatalogRouterImplementation: CatalogRouter {
         view?.performSegue(withIdentifier: "showProductInfoScene", sender: nil)
     }
     
-    //Функция для настройки открываяющихся контроллеров перед самим переходом
-    //Если окно = ProductInfoViewController, то
-    //необходимо вызвать конфигурацию окна на основе
-    //выбранного продукта
+    /// Настраивает кнопку Назад на открывающемся экране, чтобы она была без текста
+    /// Если окно = ProductInfoViewController, то
+    /// необходимо вызвать конфигурацию окна на основе
+    /// выбранного продукта
     public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let productInfoController = segue.destination as? ProductInfoViewController {
             productInfoController.configurator = ProductInfoConfiguratorImplementation()

@@ -75,22 +75,15 @@ class BasketPresenterImplementation: BasketPresenter {
         getBasketRequest.getBasket(idUser: UserSingleton.instance.getUser().id) {
             [unowned self] response in
             
-            DispatchQueue.main.async {
-                self.changeLoad(isLoad: false)
-                switch response.result {
-                case .success(let getBasketResponse):
-                    self.model.products.append(contentsOf: getBasketResponse.products)
-                    self.model.amount = getBasketResponse.amount
-                    if let view = self.view {
-                        view.setTotalAmout(text: "Купить (\(self.model.amount)р)")
-                        view.refreshProducts()
-                    }
-                    
-                case .failure(let error):
-                    if let view = self.view {
-                        view.showError(text: error.localizedDescription)
-                    }
-                }
+            self.changeLoad(isLoad: false)
+            switch response.result {
+            case .success(let getBasketResponse):
+                self.model.products.append(contentsOf: getBasketResponse.products)
+                self.model.amount = getBasketResponse.amount
+                self.handleGetBasketSuccess()
+                
+            case .failure(let error):
+                self.handleError(error: error.localizedDescription)
             }
         }
     }
@@ -105,28 +98,57 @@ class BasketPresenterImplementation: BasketPresenter {
         paymentRequest.payment() {
             [unowned self] response in
             
-            DispatchQueue.main.async {
-                self.changeLoad(isLoad: false)
-                switch response.result {
-                case .success(let paymentResponse):
-                    if let view = self.view {
-                        view.showSuccess(title: self.messagePaymentTitle, text: paymentResponse.message)
-                    }
-                    
-                case .failure(let error):
-                    if let view = self.view {
-                        view.showError(text: error.localizedDescription)
-                    }
-                }
+            self.changeLoad(isLoad: false)
+            switch response.result {
+            case .success(let paymentResponse):
+                self.handlePaymentSuccess(message: paymentResponse.message)
+                
+            case .failure(let error):
+                self.handleError(error: error.localizedDescription)
             }
         }
     }
 
     
+    /// Меняет состояние загрузки данных на экране
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
         if let view = view {
-            isLoad ? view.startLoading() : view.finishLoading()
+            DispatchQueue.main.async {
+                isLoad ? view.startLoading() : view.finishLoading()
+            }
+        }
+    }
+    
+    /// Вызывает метод для отображения информации о товарах
+    /// в корзине и их общей стоимости
+    private func handleGetBasketSuccess() {
+        Analytic.instance.sendEvent(method: .basket, parameters: nil)
+        if let view = self.view {
+            DispatchQueue.main.async {
+                view.setTotalAmout(text: "Купить (\(self.model.amount)р)")
+                view.refreshProducts()
+            }
+        }
+    }
+    
+    /// Отображает информацию об успешной оплате товаров
+    private func handlePaymentSuccess(message: String) {
+        Analytic.instance.sendEvent(method: .payment, parameters: nil)
+        if let view = self.view {
+            DispatchQueue.main.async {
+                view.showSuccess(title: self.messagePaymentTitle, text: message)
+            }
+        }
+    }
+    
+    /// Отображает ошибки на экране
+    private func handleError(error: String) {
+        Analytic.instance.assertionFailure(method: .login, message: error)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showError(text: error)
+            }
         }
     }
     

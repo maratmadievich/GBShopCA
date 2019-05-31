@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func buttonRegistrationTapped(_ sender: Any) {
-        presenter.registrate()
+        presenter.showRegistrate()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
