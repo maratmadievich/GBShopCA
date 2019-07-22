@@ -7,35 +7,32 @@
 //
 
 import UIKit
+import Fabric
+import Answers
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
     let requestFactory = RequestFactory()
 
-   
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        configureFabric()
         configureKeyboard()
-        
         showLogin()
-        
         return true
     }
     
+    private func configureFabric() {
+        Fabric.with([Answers.self])
+    }
     
     private func configureKeyboard() {
-        
         IQKeyboardManager.shared.enable = true
-        
         IQKeyboardManager.shared.enableAutoToolbar = false
-        
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
-        
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
     }
     

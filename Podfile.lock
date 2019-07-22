@@ -1,11 +1,16 @@
 PODS:
   - Alamofire (4.8.2)
+  - Answers (1.4.0):
+    - Fabric (~> 1.8.0)
+  - Fabric (1.8.2)
   - IQKeyboardManagerSwift (6.3.0)
   - SwiftLint (0.32.0)
   - Swinject (2.6.0)
 
 DEPENDENCIES:
   - Alamofire
+  - Answers
+  - Fabric
   - IQKeyboardManagerSwift
   - SwiftLint
   - Swinject
@@ -13,16 +18,20 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Answers
+    - Fabric
     - IQKeyboardManagerSwift
     - SwiftLint
     - Swinject
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Answers: e7317ccd30e7bf55c3bacfe28adbe2304b082e49
+  Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
   Swinject: 48a96cda93633cf2860697b4ce76ab5db9ebaca2
 
-PODFILE CHECKSUM: b36eb3190eb2b7bdbaf8808ccc7b3d3cf287a134
+PODFILE CHECKSUM: fd42d6d0eb49a04b93550ae11333f68848e8daaf
 
 COCOAPODS: 1.6.1

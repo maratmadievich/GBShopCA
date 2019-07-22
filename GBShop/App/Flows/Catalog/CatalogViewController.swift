@@ -74,7 +74,7 @@ extension CatalogViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.selectRow(row: indexPath.row)
+        presenter.showProductInfo(row: indexPath.row)
     }
     
 }

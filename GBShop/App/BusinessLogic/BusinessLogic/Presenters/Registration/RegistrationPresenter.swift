@@ -9,20 +9,31 @@
 import Foundation
 import UIKit
 
-//Протокол Пресентера для окна регистрации
-protocol RegistrationPresenter {
+/// Описывает Пресентер для окна регистрации
+internal protocol RegistrationPresenter {
     
-    //Указание наличия роутера для переходов из окна регистрации
+    /// Указывает наличие роутера для переходов из окна регистрации
     var router: RegistrationRouter { get }
     
-    //Указание инициализации пресентера
+    /// Описание необходимой инициализации
+    /// Параметры:
+    /// - view: объект, имеющий расширение RegistrationView для реализации модели MVP
+    /// - model: модель для реализации модели MVP
+    /// - router: объект, имеющий расширение RegistrationRouter для реализации переходов
     init (view: RegistrationView, model: RegistrationModel, router: RegistrationRouter)
-    //Функция для передачи введеных данных для регистрации
+    
+    /// Осуществляет передачу данных для регистрации
+    /// Параметры:
+    /// - userName: логин пользователя
+    /// - password: пароль пользователя
+    /// - email: email пользователя
+    /// - isGenderMan: пол пользователя, где
+    /// true - мужчина, false - женщина
     func registrate(userName: String, password: String, email: String, isGenderMan: Bool)
 }
 
 //реализация Пресентера для окна регистрации
-class RegistrationPresenterImplementation: RegistrationPresenter {
+internal class RegistrationPresenterImplementation: RegistrationPresenter {
     
     fileprivate weak var view: RegistrationView?
     private var model: RegistrationModel
@@ -30,6 +41,7 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
     
     private var isLoad: Bool = false
     private let requestFactory = RequestFactory()
+    private let errorIncorrectFields = "Одно из полей заполнено неверно"
     
     //MARK: - Публичные функции
     required init(view: RegistrationView, model: RegistrationModel, router: RegistrationRouter) {
@@ -38,9 +50,9 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
         self.router = router
     }
     
-    //В данной функции производится проверка полученных данных
-    //Если данные коррекны, вызывается метод регистрации
-    //иначе выводится ошибка
+    /// Производит проверку введенных данных
+    /// В случае некоррекстных данных выводит ошибки на экран
+    /// Иначе вызывает метод регистрации
     public func registrate(userName: String, password: String, email: String, isGenderMan: Bool) {
         
         if !isLoad {
@@ -48,19 +60,13 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
             model.password = password.trimmingCharacters(in: .whitespacesAndNewlines)
             model.email = email.trimmingCharacters(in: .whitespacesAndNewlines)
             model.gender = isGenderMan ? "m" : "w"
-            
-            if model.isRegistrationDataCorrect() {
-                callRegistrationRequest()
-            } else if let view = view {
-                view.showError(text: "Одно из полей заполнено неверно")
-            }
+            model.isRegistrationDataCorrect() ? callRegistrationRequest() : handleError(error: errorIncorrectFields)
         }
     }
     
     //MARK: - Закрытые функции
-    //В данной функции происходит попытка регистрации
-    //При успешной регистрации записывает данные
-    //иначе выводится ошибка
+    
+    /// Вызывает API-meтод регистрации
     private func callRegistrationRequest() {
         changeLoad(isLoad: true)
         
@@ -72,30 +78,43 @@ class RegistrationPresenterImplementation: RegistrationPresenter {
             switch response.result {
             case .success(let registrationResponse):
                 UserSingleton.instance.setUser(user: registrationResponse.user)
-                DispatchQueue.main.async { self.handleRegistrationSuccess() }
+                self.handleRegistrationSuccess()
                 
             case .failure(let error):
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.showError(text: error.localizedDescription)
-                    }
-                }
+                self.handleError(error: error.localizedDescription)
             }
         }
     }
     
-    //Функция для смены состояния загрузки
+    /// Меняет состояние загрузки данных на экране
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
         if let view = view {
-            isLoad ? view.startLoading() : view.finishLoading()
+            DispatchQueue.main.async {
+                isLoad ? view.startLoading() : view.finishLoading()
+            }
         }
     }
     
-    //Функция, в которой происходят действия
-    //после успешной регистрации
+     /// Осуществляет переход в окно Список товаров
     private func handleRegistrationSuccess() {
-        router.showCatalogScene()
+        Analytic.instance.sendEvent(method: .registration, parameters: ["login": model.userName,
+                                                                        "password": model.password,
+                                                                        "gender": model.gender,
+                                                                        "email": model.email])
+        DispatchQueue.main.async {
+            self.router.showCatalogScene()
+        }
+    }
+    
+    /// Отображает ошибки на экране
+    private func handleError(error: String) {
+        Analytic.instance.assertionFailure(method: .registration, message: error)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showError(text: error)
+            }
+        }
     }
     
 }

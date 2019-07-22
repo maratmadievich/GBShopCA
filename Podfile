@@ -7,6 +7,8 @@ target 'GBShop' do
 
   # Pods for GBShop
 
+	pod 'Fabric'
+	pod 'Answers'
 	pod 'Alamofire'
 	pod 'Swinject'
 	pod 'SwiftLint'
@@ -17,11 +19,9 @@ target 'GBShop' do
     # Pods for testing
   end
 
-  
-
 end
 
-target 'GBShopUITests' do
+  target 'GBShopUITests' do
     inherit! :search_paths
     # Pods for testing
   end
