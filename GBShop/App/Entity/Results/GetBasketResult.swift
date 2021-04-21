@@ -21,7 +21,7 @@ struct GetBasketResult: Codable {
         
         case amount = "amount"
         
-        case countGoods = "countGoods"
+        case countGoods = "count_goods"
         
         case products = "contents"
     }

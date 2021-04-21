@@ -44,8 +44,8 @@ class CatalogViewController: UIViewController {
         presenter.refreshCatalogRows()
     }
     
-    @IBAction func buttonProfileTapped(_ sender: Any) {
-        presenter.showProfile()
+    @IBAction func buttonBasketTapped(_ sender: Any) {
+        presenter.showBasket()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,7 +74,7 @@ extension CatalogViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.selectRow(row: indexPath.row)
+        presenter.showProductInfo(row: indexPath.row)
     }
     
 }

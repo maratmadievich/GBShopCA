@@ -8,12 +8,17 @@
 
 import Foundation
 
-protocol RegistrationConfigurator {
+/// Описывает конфигуратор для окна регистрации
+internal protocol RegistrationConfigurator {
     
+    /// Конфигурирует model, view, presenter и router
+    /// Параметры:
+    /// - registrationViewController: контроллер окна Регистрации
     func configure(registrationViewController: RegistrationViewController)
 }
 
-class RegistrationConfiguratorImplementation: RegistrationConfigurator {
+/// Реализует Конфигуратор для окна регистрации
+internal class RegistrationConfiguratorImplementation: RegistrationConfigurator {
     
     public func configure(registrationViewController: RegistrationViewController) {
         

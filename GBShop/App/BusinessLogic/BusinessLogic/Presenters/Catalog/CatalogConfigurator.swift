@@ -8,12 +8,16 @@
 
 import Foundation
 
-protocol CatalogConfigurator {
+/// Описывает конфигуратор для окна списка товаров
+internal protocol CatalogConfigurator {
     
+    /// Конфигурирует model, view, presenter и router
+    /// Параметры:
+    /// - catalogViewController: контроллер окна Авторизации
     func configure(catalogViewController: CatalogViewController)
 }
 
-class CatalogConfiguratorImplementation: CatalogConfigurator {
+internal class CatalogConfiguratorImplementation: CatalogConfigurator {
     
     public func configure(catalogViewController: CatalogViewController) {
         

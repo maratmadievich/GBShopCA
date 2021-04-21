@@ -14,8 +14,11 @@ protocol ProductInfoView: NSObjectProtocol {
     
     func setProductName(text: String)
     func setProductPrice(text: String)
+    
     func startLoading()
     func finishLoading()
-    func showError(text: String)
     func refreshReviews()
+    
+    func showError(text: String)
+    func showSuccess(title: String, text: String)
 }

@@ -128,4 +128,12 @@ class RequestFactory {
         return GetBasketRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
     }
     
+    
+    func makePaymentRequestFatory() -> PaymentRequestFactory {
+        
+        let errorParser = makeErrorParser()
+        
+        return PaymentRequest(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+    }
+    
 }

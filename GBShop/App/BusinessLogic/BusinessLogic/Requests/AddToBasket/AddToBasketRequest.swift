@@ -16,7 +16,7 @@ class AddToBasketRequest: AbstractRequestFactory {
     
     let queue: DispatchQueue?
     
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = BaseUrlSingleton.instance.getUrl()
     
     
     init(errorParser: AbstractErrorParser,
@@ -49,9 +49,9 @@ extension AddToBasketRequest {
         
         let baseUrl: URL
         
-        let method: HTTPMethod = .get
+        let method: HTTPMethod = .post
         
-        let path: String = "addToBasket.json"
+        let path: String = "basket/add"
         
         let idProduct: Int
         

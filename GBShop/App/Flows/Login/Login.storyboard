@@ -24,12 +24,14 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BMI-Rg-epk">
                                         <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="textFieldLogin"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sat-in-WNB">
                                         <rect key="frame" x="0.0" y="50" width="311" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="textFieldPassword"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -40,6 +42,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zx-5q-9eD">
                                                 <rect key="frame" x="0.0" y="0.0" width="150.5" height="30"/>
                                                 <color key="backgroundColor" name="colorButton"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="buttonLogin"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Войти"/>
                                                 <connections>
@@ -49,6 +52,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xql-Hb-bGt">
                                                 <rect key="frame" x="160.5" y="0.0" width="150.5" height="30"/>
                                                 <color key="backgroundColor" name="colorButton"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="buttonRegistrate"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Регистрация"/>
                                                 <connections>
@@ -65,6 +69,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" label="mainView"/>
                         <constraints>
                             <constraint firstItem="YT5-jr-fP0" firstAttribute="centerY" secondItem="X12-zp-IZU" secondAttribute="centerY" id="JUA-wT-DOt"/>
                             <constraint firstItem="X12-zp-IZU" firstAttribute="trailing" secondItem="YT5-jr-fP0" secondAttribute="trailing" constant="32" id="Sfy-7p-0Ch"/>

@@ -8,13 +8,19 @@
 
 import UIKit
 
-protocol RegistrationRouter: AbstractRouterFactory {
+///  Описывает роутер для окна регистрации
+internal protocol RegistrationRouter: AbstractRouterFactory {
     
+    /// Описание необходимой инициализации
+    /// Параметры:
+    /// - view: viewController окна регистрации
     init(view: RegistrationViewController)
+    
+    /// Осуществляет переход к онку Список товаров
     func showCatalogScene()
 }
 
-class RegistrationRouterImplementation: RegistrationRouter {
+internal class RegistrationRouterImplementation: RegistrationRouter {
     
     fileprivate weak var view: RegistrationViewController?
     
@@ -27,6 +33,7 @@ class RegistrationRouterImplementation: RegistrationRouter {
         view?.performSegue(withIdentifier: "showCatalogScene", sender: nil)
     }
     
+    /// Настраивает кнопку Назад на открывающемся экране, чтобы она была без текста
     public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = ""

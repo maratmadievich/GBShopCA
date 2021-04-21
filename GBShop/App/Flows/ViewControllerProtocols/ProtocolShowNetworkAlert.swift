@@ -8,7 +8,8 @@
 
 import UIKit
 
-protocol ProtocolShowNetworkAlert { }
+protocol ProtocolShowNetworkAlert {
+}
 
 extension ProtocolShowNetworkAlert where Self: UIViewController {
     
@@ -22,9 +23,9 @@ extension ProtocolShowNetworkAlert where Self: UIViewController {
     }
     
     
-    func showSuccess(text: String) {
+    func showSuccess(title: String, text: String) {
         
-        let alert = UIAlertController(title: "Изменение профиля", message: text, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: nil))
         

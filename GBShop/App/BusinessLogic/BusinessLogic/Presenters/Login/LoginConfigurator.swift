@@ -8,15 +8,19 @@
 
 import Foundation
 
-protocol LoginConfigurator {
+/// Описывает конфигуратор для окна авторизации
+internal protocol LoginConfigurator {
     
+    /// Конфигурирует model, view, presenter и router
+    /// Параметры:
+    /// - loginViewController: контроллер окна Авторизации
     func configure(loginViewController: LoginViewController)
 }
 
-class LoginConfiguratorImplementation: LoginConfigurator {
+/// Реализует Конфигуратор для окна авторизации
+internal class LoginConfiguratorImplementation: LoginConfigurator {
     
-    public func configure(loginViewController: LoginViewController) {
-        
+    internal func configure(loginViewController: LoginViewController) {
         let model = LoginModel()
         let router = LoginRouterImplementation(view: loginViewController)
         let presenter = LoginPresenterImplementation(view: loginViewController, model: model, router: router)

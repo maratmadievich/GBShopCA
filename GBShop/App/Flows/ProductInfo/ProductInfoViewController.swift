@@ -29,6 +29,46 @@ class ProductInfoViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+    @IBAction func buttonAddToBasketTapped(_ sender: Any) {
+        showProductCountAlert()
+    }
+    
+    private func showProductCountAlert() {
+        
+        let alert = UIAlertController(title: "Добавление товара", message: "Please input something", preferredStyle: UIAlertController.Style.alert)
+        
+        let action = UIAlertAction(title: "Добавить", style: .default) { (alertAction) in
+            let textField = alert.textFields![0] as UITextField
+            let quantityString = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            self.presenter.addToBasket(quantityString: quantityString)
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Количество"
+            textField.keyboardType = .numberPad
+            textField.delegate = self
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { (alertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true)
+    }
+    
+}
+
+extension ProductInfoViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if range.length == 0 && range.location == 0 && string == "0" {
+            return false
+        }
+        return true
+    }
 }
 
 extension ProductInfoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -48,7 +88,6 @@ extension ProductInfoViewController: UITableViewDelegate, UITableViewDataSource 
             presenter.getReviewRows()
         }
     }
-    
 }
 
 extension ProductInfoViewController: ProductInfoView {

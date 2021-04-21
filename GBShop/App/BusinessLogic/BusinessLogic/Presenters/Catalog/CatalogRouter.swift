@@ -8,14 +8,21 @@
 
 import UIKit
 
-protocol CatalogRouter: AbstractRouterFactory {
+//Протокол Роутера для окна списка товаров
+internal protocol CatalogRouter: AbstractRouterFactory {
     
+    //Указание иинциализации роутера
     init(view: CatalogViewController)
+    //Функция для перехода к окну Корзина
+    func showBasketScene()
+    //Функция для перехода к окну Профиль
     func showProfileScene()
+    //Функция для перехода к окну Информация о продукте
     func showProductInfoScene(product: Product)
 }
 
-class CatalogRouterImplementation: CatalogRouter {
+//Протокол Роутера для окна списка товаров
+internal class CatalogRouterImplementation: CatalogRouter {
     
     fileprivate weak var view: CatalogViewController?
     private var product: Product!
@@ -24,15 +31,24 @@ class CatalogRouterImplementation: CatalogRouter {
         self.view = view
     }
     
+    public func showBasketScene() {
+        view?.performSegue(withIdentifier: "showBasketScene", sender: nil)
+    }
+    
     public func showProfileScene() {
         view?.performSegue(withIdentifier: "showProfileScene", sender: nil)
     }
     
+    //Данная функция сохраняет продукт, информацию о котором нужно показать и осуществляет переход
     public func showProductInfoScene(product: Product) {
         self.product = product
         view?.performSegue(withIdentifier: "showProductInfoScene", sender: nil)
     }
     
+    /// Настраивает кнопку Назад на открывающемся экране, чтобы она была без текста
+    /// Если окно = ProductInfoViewController, то
+    /// необходимо вызвать конфигурацию окна на основе
+    /// выбранного продукта
     public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let productInfoController = segue.destination as? ProductInfoViewController {
             productInfoController.configurator = ProductInfoConfiguratorImplementation()

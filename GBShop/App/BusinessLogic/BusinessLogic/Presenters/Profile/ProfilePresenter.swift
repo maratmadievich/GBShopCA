@@ -8,14 +8,19 @@
 
 import Foundation
 
+//Протокол Пресентера для окна смены профиля
 protocol ProfilePresenter {
     
+    //Указание наличия роутера для переходов из окна смены профиля
     var router: ProfileRouter { get }
     
+    //Указание инициализации пресентера
     init (view: ProfileView, model: ProfileModel, router: ProfileRouter)
+    //Функция для передачи введеных данных для смены профиля
     func changeProfile(userName: String, password: String, email: String, isGenderMan: Bool, card: String, bio: String)
 }
 
+//реализация Пресентера для окна смены профиля
 class ProfilePresenterImplementation: ProfilePresenter {
     
     fileprivate weak var view: ProfileView?
@@ -25,10 +30,11 @@ class ProfilePresenterImplementation: ProfilePresenter {
     private var isLoad: Bool = false
     private let requestFactory = RequestFactory()
     
+    private let messageChangeTitle = "Изменение профиля"
     private let messageChangeSuccess = "Изменение прошло успешно!"
     private let errorIncorrectFields = "Одно из полей заполнено неверно"
     
-    
+    //MARK: - Публичные функции
     required init(view: ProfileView, model: ProfileModel, router: ProfileRouter) {
         self.view = view
         self.model = model
@@ -36,7 +42,9 @@ class ProfilePresenterImplementation: ProfilePresenter {
         showProfileData()
     }
     
-    //MARK: - Публичные функции
+    //В данной функции производится проверка полученных данных
+    //Если данные коррекны, вызывается метод смены профиля
+    //иначе выводится ошибка
     public func changeProfile(userName: String, password: String, email: String, isGenderMan: Bool, card: String, bio: String) {
         
         if !isLoad {
@@ -47,17 +55,14 @@ class ProfilePresenterImplementation: ProfilePresenter {
             model.card = card.trimmingCharacters(in: .whitespacesAndNewlines)
             model.bio = bio.trimmingCharacters(in: .whitespacesAndNewlines)
 
-            if model.isProfileDataCorrect() {
-                callChangeProfileRequest()
-            } else {
-                if let view = view {
-                    view.showError(text: errorIncorrectFields)
-                }
-            }
+            model.isProfileDataCorrect() ? callChangeProfileRequest() : handleError(error: errorIncorrectFields)
         }
     }
     
     //MARK: - Закрытые функции
+    //В данной функции происходит попытка смены профиля
+    //При успешной регистрации записывает данные
+    //иначе выводится ошибка
     private func callChangeProfileRequest() {
         changeLoad(isLoad: true)
         
@@ -69,22 +74,15 @@ class ProfilePresenterImplementation: ProfilePresenter {
             switch response.result {
             case .success(let changeProfileResponse):
                 UserSingleton.instance.setUser(user: changeProfileResponse.user)
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.showSuccess(text: self.messageChangeSuccess)
-                    }
-                }
+                self.handleChangeProfileSuccess()
                 
             case .failure(let error):
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.showError(text: error.localizedDescription)
-                    }
-                }
+                self.handleError(error: error.localizedDescription)
             }
         }
     }
     
+    //Функция для отображения текущих данных пользователя
     private func showProfileData() {
         guard let view = view else {
             return
@@ -97,12 +95,41 @@ class ProfilePresenterImplementation: ProfilePresenter {
         view.setSengmentedControlGender(selectedItem: UserSingleton.instance.getUser().gender == "m" ? 0 : 1)
     }
     
+    /// Меняет состояние загрузки данных на экране
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
         if let view = view {
-            isLoad ? view.startLoading() : view.finishLoading()
+            DispatchQueue.main.async {
+                isLoad ? view.startLoading() : view.finishLoading()
+            }
         }
     }
+    
+    /// Вызывает метод для отображения успешной смены информации о профиле
+    private func handleChangeProfileSuccess() {
+        Analytic.instance.sendEvent(method: .profile, parameters: ["login": model.userName,
+                                                                   "password": model.password,
+                                                                   "email": model.email,
+                                                                   "gender": model.gender,
+                                                                   "card": model.card,
+                                                                   "bio": model.bio])
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showSuccess(title: self.messageChangeTitle, text: self.messageChangeSuccess)
+            }
+        }
+    }
+    
+    /// Отображает ошибки на экране
+    private func handleError(error: String) {
+        Analytic.instance.assertionFailure(method: .login, message: error)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showError(text: error)
+            }
+        }
+    }
+
     
 }
 

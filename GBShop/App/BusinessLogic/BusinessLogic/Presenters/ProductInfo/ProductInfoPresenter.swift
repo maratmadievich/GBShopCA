@@ -17,6 +17,7 @@ protocol ProductInfoPresenter {
     
     func viewDidLoad()
     func getReviewRows()
+    func addToBasket(quantityString: String)
     func configure(cell: ProductInfoCellView, forRow row: Int)
 }
 
@@ -28,6 +29,9 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
     
     private var isLoad: Bool = false
     private let requestFactory = RequestFactory()
+    private let messageIncorrectCount = "Вы указали некорректное количество!"
+    private let messageAddToBasketTitle = "Добавление в корзину"
+    private let messageAddToBasketText = "Добавление прошло успешно!"
     
     public var rowsCount: Int {
         return model.reviews.count
@@ -52,6 +56,16 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
         }
     }
     
+    public func addToBasket(quantityString: String) {
+        let quantity = Int(quantityString) ?? 0
+        if quantity > 0 {
+            callAddToBasketRequest(quantity: quantity)
+        } else {
+            handleError(error: messageIncorrectCount)
+        }
+        
+    }
+    
     public func configure(cell: ProductInfoCellView, forRow row: Int) {
         let review = model.reviews[row]
         cell.setUserName(text: review.userName)
@@ -72,18 +86,28 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
                 self.model.reviews.append(contentsOf: getReviewsResponse.reviews)
                 self.model.pageNumber += 1
                 self.model.maxReviewsCount = getReviewsResponse.maxRowsCount
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.refreshReviews()
-                    }
-                }
+                self.handleGetReviewsSuccess()
                
             case .failure(let error):
-                DispatchQueue.main.async {
-                    if let view = self.view {
-                        view.showError(text: error.localizedDescription)
-                    }
-                }
+                self.handleError(error: error.localizedDescription)
+            }
+        }
+    }
+    
+    private func callAddToBasketRequest(quantity: Int) {
+        changeLoad(isLoad: true)
+        
+        let addToBasketRequest = requestFactory.makeAddToBasketRequestFatory()
+        addToBasketRequest.addToBasket(idProduct: model.product.id, quantity: quantity) {
+            [unowned self] response in
+            
+            self.changeLoad(isLoad: false)
+            switch response.result {
+            case .success(_):
+                self.handleAddToBasketSuccess()
+                
+            case .failure(let error):
+                self.handleError(error: error.localizedDescription)
             }
         }
     }
@@ -96,12 +120,44 @@ class ProductInfoPresenterImplementation: ProductInfoPresenter {
         view.setProductPrice(text: "Цена: \(model.product.price)р")
     }
     
+    /// Меняет состояние загрузки данных на экране
     private func changeLoad(isLoad: Bool) {
         self.isLoad = isLoad
         if let view = view {
-            isLoad ? view.startLoading() : view.finishLoading()
+            DispatchQueue.main.async {
+                isLoad ? view.startLoading() : view.finishLoading()
+            }
         }
-        
+    }
+    
+    /// Отображает коментарии к товару
+    private func handleGetReviewsSuccess() {
+        Analytic.instance.sendEvent(method: .reviews, parameters: nil)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.refreshReviews()
+            }
+        }
+    }
+    
+    /// Вызывает метод для перехода к экрану Списка товаров
+    private func handleAddToBasketSuccess() {
+        Analytic.instance.sendEvent(method: .addToBasket, parameters: ["product": model.product.name])
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showSuccess(title: self.messageAddToBasketTitle, text: self.messageAddToBasketText)
+            }
+        }
+    }
+    
+    /// Отображает ошибки на экране
+    private func handleError(error: String) {
+        Analytic.instance.assertionFailure(method: .login, message: error)
+        if let view = view {
+            DispatchQueue.main.async {
+                view.showError(text: error)
+            }
+        }
     }
     
 }

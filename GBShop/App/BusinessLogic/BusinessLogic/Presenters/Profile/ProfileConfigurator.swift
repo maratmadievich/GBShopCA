@@ -8,11 +8,14 @@
 
 import Foundation
 
+//Протокол Конфигуратора для окна смены профиля
 protocol ProfileConfigurator {
     
+    //Описание функции по конфигурированию profileViewController
     func configure(profileViewController: ProfileViewController)
 }
 
+//Реализация Конфигуратора для окна смены профиля
 class ProfileConfiguratorImplementation: ProfileConfigurator {
     
     public func configure(profileViewController: ProfileViewController) {
